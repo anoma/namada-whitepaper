@@ -163,7 +163,7 @@ Similarly, the reverse process will allow for withdrawals of deposits on the Eth
 # Governance
 
 ## Public Goods Funding (PGF)
-There will be a periodically allocated
+There will be a periodically elected council tasked with voting on projects/goods that should be retro-actively funded.
 
 
 # Stack and Architectural Details
@@ -174,5 +174,5 @@ There will be a periodically allocated
 
 ## Privacy-Conserving Swaps
 
-In partnership with Osmosis-Labs, Namada will allow for private swaps between assets.
+Using the platform developed by Osmosis-Labs, Namada will allow for private swaps between assets.
 
