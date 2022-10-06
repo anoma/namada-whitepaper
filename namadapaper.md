@@ -4,7 +4,7 @@ author: Bengt Lofgren, Christopher Goes, Awa Sun Yin, Adrian Brink
 fontsize: 9pt
 date: \textit{Pre-release, \today}
 abstract: |
-	Namada is the first fractal instance of the Anoma ecosystem. Namada is an IBC compatible blockchain that employs a multi-asset shileded pool. The multi-asset shielded pool allows for users to make private transfers of arbitrary assets and is an extension of the Sapling circuit used by Zcash/Zerocash. Namada uses the Tendermint consensus and implements a canonical and trustless bridge to the Ethereum ecosystem.
+	Namada is the first fractal instance of the Anoma ecosystem. Namada is an IBC compatible blockchain that employs a multi-asset shileded pool. The multi-asset shielded pool allows for users to make shileded transfers of arbitrary assets and is an extension of the Sapling circuit used by Zcash/Zerocash. Namada uses the Tendermint consensus and implements a canonical and trustless bridge to the Ethereum ecosystem.
 
 
 urlcolor: cyan
@@ -57,13 +57,13 @@ Because of the positive externality associated with entering the privacy set, th
 
 ![deadweight loss](./privacy_economics_2.png)
 
-Therefore, if the protocol can incentivise a number of users (with ample sizes of assets) to enter the privacy set such that there is sufficient value in entering the privacy set, the coordination problem is solved. If the "social planner" was in full knowledge of exactly the amount of users needed in order to achieve this value $n^*$, she could offer exactly the correct amount of subsidy to incentives the first $n^*$ users to use the protocol and nothing more.
+Therefore, if the protocol can incentivise a number of users (with ample sizes of assets) to enter the privacy set such that there is sufficient value in entering the privacy set, the coordination problem is solved. If the "social planner" was in full knowledge of exactly the amount of users needed in order to achieve this value $n^*$, she could offer exactly the correct amount of subsidy to incentivise the first $n^*$ users to use the protocol and nothing more.
 
 ### Correcting the externality
 
 We suggest an alternative approach, whereby we can claim that:
 
-If the subsidy $s(n)$ is such that $s(n) \propto \frac{1}{n}$, then for sufficiently large constant of proportionality, the subsidy will incentivise the correct number of users to join the system. Additionally, this incentive scheme comes with the added benefit of being finite and predictable. This is not the only possible solution, but is one of them and seems natural.
+If the subsidy $s(n)$ is such that $s(n) \propto \frac{1}{n}$, then for a sufficiently large constant of proportionality, the subsidy will incentivise the correct number of users to join the system. Additionally, this incentive scheme comes with the added benefit of being finite and predictable. This is not the only possible solution, but is one of them and seems natural.
 
 ![Unoptimised solution](./privacy_economics_3.png)
 
@@ -106,18 +106,18 @@ The Multi Asset Shielded Pool (MASP) is the primary feature that Namada offers. 
 
 At a very high level[^1], the MASP works in the following fashion:
 
-There exists two separate pools:
-1. The shielded pool
-2. The transparent pool
+There exists two separate sets:
+1. The shielded set
+2. The transparent set
 
-### Transparent pool
-From a user perspective, all tokens held in the transparent pool are equivalent to holding tokens in any other transparent ecosystem. The functionality available to users are transfering assets from one address to another address, as well as bridging assets across the bridges deployed on Namada.
+### Transparent set
+From a user perspective, all tokens held in the transparent set are equivalent to holding tokens in any other transparent ecosystem. The functionality available to users are transfering assets from one address to another address, as well as bridging assets across the bridges deployed on Namada.
 
-### Shielded Pool
+### Shielded Set
 
 #### **Shielding assets**
 
-Assets are minted into the shielded pool from a valid zero knowledge proof that produces a "note".
+Assets are minted into the shielded set from a valid zero knowledge proof that produces a "note".
 The zero knowledge proof is meant to prove a set of things:
 1. The base currency in which the note will be denominated
 2. The value of the currency 
@@ -128,7 +128,7 @@ The underlying asset is sent to escrow.
 
 [^1]: For more details, see TODO CITE ZeroCash Paper @
 
-[^2]: The reason for this has to do with providing incentives
+[^2]: The reason for this has to do with providing rewards for contributing to the shielded set
 
 #### **Transferring Assets**
 Notes are transferred by constructing zero knowledge proofs that are able to nullify notes and mint them under the ownership of the receiver.
@@ -163,16 +163,48 @@ Similarly, the reverse process will allow for withdrawals of deposits on the Eth
 # Governance
 
 ## Public Goods Funding (PGF)
-There will be a periodically elected council tasked with voting on projects/goods that should be retro-actively funded.
+Namada's existence relies on its open-source software stack, research, and ecosystem tooling all of which have relied on standing on the shoulders of other open-source information, readily available to the public through the internet. All of these foundations share the common attribute of being non-rivalrous and non-excludable, which are sufficient charactersitics to define them as public goods.
+
+It is a well known concept in the economics literature that public goods tend to be underfunded due to these qualities. In short, this occurs because of coordination problems between individuals, whereby equilibrium market prices do not reflect the benefit the goods existence brings to the society as a whole, but rather the sole buyer of the good. 
+
+One proposed solution to avoid such coordination failures is to subsidise such goods in a way that allows individual incentives to align with that of the public.
+
+There will be a periodically elected council tasked with voting on projects/goods that should be funded.
+
+The council is responsible for two types of public goods funding.
+
+1. Continuous funding - in order to fund ongoing public goods projects in order to assist their coming to fruition
+2. Retroactive funding - in order to fund completed and easily evaluated public goods, in order to incentivise future public goods to be built
+
+Funding public goods is sourced through native asset (NAM) inflation, dictated by the protocol.
+
+At the time of writing, 10% annual inflation is dedicated towards PGF.
+
+## Continuous PGF
+
+
+## Retroactive PGF
 
 
 # Stack and Architectural Details
+
+The codebase is built in rust. As with any Anoma-based blockchain, validity predicates dictate state changes. The MASP is built using the Sapling circuit as introduced by the Electric Coin Company (ECC).
 
 # Future Roadmap
 
 ## Private Bridges
 
+Imagine two different bridges exist between blockchain A and blockchain B, and there exists some fungible asset FUN originating on blockchain A. In general, these two bridges will have separate security assumptions. Therefore, despite being fungible on blockchain A, FUN sent over the first bridge (name it foo), will not be fungible with FUN sent over the other bridge (name it bar). Instead, on blockchain B we have FUN-foo and FUN-bar. A common solution to dealing with this problem (see HOP protocol and others), is to first agree on a "canonical" bridge, and then have liquidity pools that exist on blockchain B to convert all non-canonical bridged assets to its canonical counterpart by in essense "reverting" the actions of the bridge. In practice, say bridge Foo is decided on as the canonical bridge, then all assets bridged through Bar will eventually have to be bridged back from blockchain B to blockchain A through Bar, in order to be sent through bridge Foo. If sufficient liquidity providers exist on Blockchain B to take on this task for a fee, the user experience is not affected.
+
+![bridges_today](bridges.png)
+
+When working with a shielded pool, the additional factor of privacy set size comes into play. If a small size of FUN is being routed through Bar compared to Foo, then any asset routed through Foo will have stronger privacy guarantees than Bar, and will eventually lead to equilibria whereby a canonical bridge is inevitable. Further, any liquidity provider swapping assets from non-canonical bridges to the canonical-bridge asset lose all privacy guarantees.
+
+Ideally, this can be avoided by incorporating *private* bridges. 
+
 ## Privacy-Conserving Swaps
 
-Using the platform developed by Osmosis-Labs, Namada will allow for private swaps between assets.
+Using the platform developed by Osmosis-Labs, Namada will allow for privacy-preserving swaps between assets.
+
+The Uniswap v3 contract will be integrated for similar purposes.
 
