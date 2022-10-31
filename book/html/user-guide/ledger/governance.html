@@ -1,0 +1,314 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Governance - Namada Documentation</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../assets/custom.css">
+        <link rel="stylesheet" href="../../assets/mdbook-admonish.css">
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../../quick-start.html"><strong aria-hidden="true">2.</strong> Quickstart</a></li><li class="chapter-item expanded "><a href="../../user-guide/index.html"><strong aria-hidden="true">3.</strong> User guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../user-guide/install.html"><strong aria-hidden="true">3.1.</strong> Installing Namada</a></li><li class="chapter-item expanded "><a href="../../user-guide/getting-started.html"><strong aria-hidden="true">3.2.</strong> Getting started</a></li><li class="chapter-item expanded "><a href="../../user-guide/wallet.html"><strong aria-hidden="true">3.3.</strong> Managing a wallet</a></li><li class="chapter-item expanded "><a href="../../user-guide/ledger.html"><strong aria-hidden="true">3.4.</strong> The Ledger</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../user-guide/ledger/masp.html"><strong aria-hidden="true">3.4.1.</strong> Shielded transfers</a></li><li class="chapter-item expanded "><a href="../../user-guide/ledger/pos.html"><strong aria-hidden="true">3.4.2.</strong> Interacting with PoS</a></li><li class="chapter-item expanded "><a href="../../user-guide/ledger/governance.html" class="active"><strong aria-hidden="true">3.4.3.</strong> Governance</a></li></ol></li><li class="chapter-item expanded "><a href="../../user-guide/genesis-validator-setup.html"><strong aria-hidden="true">3.5.</strong> Genesis validator setup</a></li><li class="chapter-item expanded "><a href="../../user-guide/genesis-validator-apply.html"><strong aria-hidden="true">3.6.</strong> Applying to be a genesis validator</a></li></ol></li><li class="chapter-item expanded "><a href="../../testnets/index.html"><strong aria-hidden="true">4.</strong> Testnets</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../testnets/namada-close-quarters-testnet-1.html"><strong aria-hidden="true">4.1.</strong> Namada Close Quarters Testnet 1</a></li></ol></li><li class="chapter-item expanded "><a href="../../namada-trusted-setup.html"><strong aria-hidden="true">5.</strong> Namada Trusted Setup</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Namada Documentation</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/anoma/namada" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/anoma/namada/edit/main/documentation/docs/src/user-guide/ledger/governance.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="governance"><a class="header" href="#governance">Governance</a></h1>
+<p>The Namada governance mechanism gives users the possibility to upgrade the protocol dynamically.</p>
+<p>There are two different mechanism to create a proposal:</p>
+<ul>
+<li><a href="#on-chain-proposals">On-chain proposals</a>: Proposal is voted on and tallied on-chain. This can optionally include proposal code to be executed if the proposal is accepted.</li>
+<li><a href="#off-chain-proposals">Off-chain proposals</a></li>
+</ul>
+<h2 id="on-chain-proposals"><a class="header" href="#on-chain-proposals">On-chain proposals</a></h2>
+<h3 id="create-a-proposal"><a class="header" href="#create-a-proposal">Create a proposal</a></h3>
+<p>Assuming you have an account with at least 500 NAM token (in this example we are going to use <code>my-new-acc</code>), lets get the corresponding address</p>
+<pre><code class="language-shell">namada wallet address find --alias `my-new-acc`
+</code></pre>
+<p>Now, we need to create a json file <code>proposal.json</code> holding the content of our proposal. Copy the below text into a json file.</p>
+<pre><code class="language-json">{
+    &quot;content&quot;: {
+        &quot;title&quot;: &quot;Proposal title&quot;,
+        &quot;authors&quot;: &quot;email@proposal.n&quot;,
+        &quot;discussions-to&quot;: &quot;www.github.com/anoma/aip/1&quot;,
+        &quot;created&quot;: &quot;2022-03-10T08:54:37Z&quot;,
+        &quot;license&quot;: &quot;MIT&quot;,
+        &quot;abstract&quot;: &quot;Ut convallis eleifend orci vel venenatis. Duis vulputate metus in lacus sollicitudin vestibulum. Suspendisse vel velit ac est consectetur feugiat nec ac urna. Ut faucibus ex nec dictum fermentum. Morbi aliquet purus at sollicitudin ultrices. Quisque viverra varius cursus. Praesent sed mauris gravida, pharetra turpis non, gravida eros. Nullam sed ex justo. Ut at placerat ipsum, sit amet rhoncus libero. Sed blandit non purus non suscipit. Phasellus sed quam nec augue bibendum bibendum ut vitae urna. Sed odio diam, ornare nec sapien eget, congue viverra enim.&quot;,
+        &quot;motivation&quot;: &quot;Ut convallis eleifend orci vel venenatis. Duis vulputate metus in lacus sollicitudin vestibulum. Suspendisse vel velit ac est consectetur feugiat nec ac urna. Ut faucibus ex nec dictum fermentum. Morbi aliquet purus at sollicitudin ultrices.&quot;,
+        &quot;details&quot;: &quot;Ut convallis eleifend orci vel venenatis. Duis vulputate metus in lacus sollicitudin vestibulum. Suspendisse vel velit ac est consectetur feugiat nec ac urna. Ut faucibus ex nec dictum fermentum. Morbi aliquet purus at sollicitudin ultrices. Quisque viverra varius cursus. Praesent sed mauris gravida, pharetra turpis non, gravida eros.&quot;,
+        &quot;requires&quot;: &quot;2&quot;
+    },
+    &quot;author&quot;: &quot;TODO&quot;,
+    &quot;voting_start_epoch&quot;: 3,
+    &quot;voting_end_epoch&quot;: 6,
+    &quot;grace_epoch&quot;: 12,
+    &quot;proposal_code_path&quot;: &quot;./wasm_for_tests/tx_no_op.wasm&quot;
+}
+</code></pre>
+<p>You should change the value of:</p>
+<ul>
+<li><code>Author</code> field with the address of <code>my-new-acc</code>.</li>
+<li><code>voting_start_epoch</code> with a future epoch (must be a multiple of 3) for which you want the voting to begin</li>
+<li><code>voting_end_epoch</code> with an epoch greater than <code>voting_start_epoch</code>, a multiple of 3, and by which no further votes will be accepted</li>
+<li><code>grace_epoch</code> with an epoch greater than <code>voting_end_epoch</code> + 6, in which the proposal, if passed, will come into effect</li>
+<li><code>proposal_code_path</code> with the absolute path of the wasm file to execute (or remove the field completely)</li>
+</ul>
+<p>As soon as your <code>proposal.json</code> file is ready, you can submit the proposal with (making sure to be in the same directory as the <code>proposal.json</code> file):</p>
+<pre><code class="language-shell">namada client init-proposal --data-path proposal.json 
+</code></pre>
+<p>The transaction should have been accepted. You can query all the proposals with:</p>
+<pre><code class="language-shell">namada client query-proposal
+</code></pre>
+<p>or a single proposal with</p>
+<pre><code class="language-shell">namada client query-proposal --proposal-id 0
+</code></pre>
+<p>where <code>0</code> is the proposal id.</p>
+<h3 id="vote-a-proposal"><a class="header" href="#vote-a-proposal">Vote a proposal</a></h3>
+<p>Only validators and delegators can vote. Assuming you have a validator or a delegator account (in this example we are going to use <code>validator</code>), you can send a vote with the following command:</p>
+<pre><code class="language-shell">namada client vote-proposal \
+    --proposal-id 0 \
+    --vote yay \
+    --signer validator
+</code></pre>
+<p>where <code>--vote</code> can be either <code>yay</code> or <code>nay</code>.</p>
+<h3 id="check-the-result"><a class="header" href="#check-the-result">Check the result</a></h3>
+<p>As soon as the ledger reaches the epoch defined in the json as <code>voting_end_epoch</code>, no votes will be accepted. The code definied in <code>proposal_code</code> json field will be executed at the beginning of <code>grace_epoch</code> epoch. You can use the following commands to check the status of a proposal:</p>
+<pre><code class="language-shell">namada client query-proposal --proposal-id 0
+</code></pre>
+<p>or to just check the result:</p>
+<pre><code class="language-shell">namada client query-proposal-result --proposal-id 0
+</code></pre>
+<h2 id="off-chain-proposals"><a class="header" href="#off-chain-proposals">Off-chain proposals</a></h2>
+<p>If for any reason issuing an on-chain proposal is not adequate to your needs, you still have the option to create an off-chain proposal.</p>
+<h3 id="create-proposal"><a class="header" href="#create-proposal">Create proposal</a></h3>
+<p>Create the same json file as in the on-chain proposal and use the following command:</p>
+<pre><code class="language-shell">namada client init-proposal \
+    --data-path proposal.json \
+    --offline
+</code></pre>
+<p>This command will create a <code>proposal</code> file same directory where the command was launched.</p>
+<h3 id="vote-on-proposal"><a class="header" href="#vote-on-proposal">Vote on proposal</a></h3>
+<p>To vote on an offline proposal use the following command:</p>
+<pre><code class="language-shell">namada client vote-proposal --data-path proposal \
+    --vote yay \
+    --signer validator \
+    --offline
+</code></pre>
+<p>This command will create a <code>proposal-vote-${address}</code> file (where address is the <code>--signer</code> address).</p>
+<h3 id="tally-off-chain-proposal"><a class="header" href="#tally-off-chain-proposal">Tally off-chain proposal</a></h3>
+<p>To compute the tally for an offline proposal we need to collect</p>
+<ul>
+<li><code>proposal</code> file (must have this name)</li>
+<li>all the <code>proposal-vote-${address}</code> files</li>
+</ul>
+<p>All those files will have to be in a folder (lets call it <code>offline-proposal</code>).</p>
+<p>Now you can use the following command:</p>
+<pre><code class="language-shell">namada client query-proposal-result \
+    --offline \
+    --data-path `offline-proposal`
+</code></pre>
+<p>which will tell you the proposal result.</p>
+<footer id="open-on-gh">Found a bug? <a href="https://github.com/anoma/namada/edit/main/documentation/docs/src/user-guide/ledger/governance.md">Edit this page on GitHub.</a></footer>
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../user-guide/ledger/pos.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../user-guide/genesis-validator-setup.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../user-guide/ledger/pos.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../user-guide/genesis-validator-setup.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

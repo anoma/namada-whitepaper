@@ -1,0 +1,1217 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Namada Documentation</title>
+        <meta name="robots" content="noindex" />
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="assets/custom.css">
+        <link rel="stylesheet" href="assets/mdbook-admonish.css">
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="quick-start.html"><strong aria-hidden="true">2.</strong> Quickstart</a></li><li class="chapter-item expanded "><a href="user-guide/index.html"><strong aria-hidden="true">3.</strong> User guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="user-guide/install.html"><strong aria-hidden="true">3.1.</strong> Installing Namada</a></li><li class="chapter-item expanded "><a href="user-guide/getting-started.html"><strong aria-hidden="true">3.2.</strong> Getting started</a></li><li class="chapter-item expanded "><a href="user-guide/wallet.html"><strong aria-hidden="true">3.3.</strong> Managing a wallet</a></li><li class="chapter-item expanded "><a href="user-guide/ledger.html"><strong aria-hidden="true">3.4.</strong> The Ledger</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="user-guide/ledger/masp.html"><strong aria-hidden="true">3.4.1.</strong> Shielded transfers</a></li><li class="chapter-item expanded "><a href="user-guide/ledger/pos.html"><strong aria-hidden="true">3.4.2.</strong> Interacting with PoS</a></li><li class="chapter-item expanded "><a href="user-guide/ledger/governance.html"><strong aria-hidden="true">3.4.3.</strong> Governance</a></li></ol></li><li class="chapter-item expanded "><a href="user-guide/genesis-validator-setup.html"><strong aria-hidden="true">3.5.</strong> Genesis validator setup</a></li><li class="chapter-item expanded "><a href="user-guide/genesis-validator-apply.html"><strong aria-hidden="true">3.6.</strong> Applying to be a genesis validator</a></li></ol></li><li class="chapter-item expanded "><a href="testnets/index.html"><strong aria-hidden="true">4.</strong> Testnets</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="testnets/namada-close-quarters-testnet-1.html"><strong aria-hidden="true">4.1.</strong> Namada Close Quarters Testnet 1</a></li></ol></li><li class="chapter-item expanded "><a href="namada-trusted-setup.html"><strong aria-hidden="true">5.</strong> Namada Trusted Setup</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Namada Documentation</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/anoma/namada" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
+<p>Welcome to Namada's docs!</p>
+<h2 id="about-namada"><a class="header" href="#about-namada">About Namada</a></h2>
+<p><a href="https://namada.net/">Namada</a> is a Proof-of-Stake layer 1 protocol for asset-agnostic, interchain privacy. Namada is Anoma's first fractal instance and is currently being developed by <a href="https://heliax.dev">Heliax</a>, a public goods lab.</p>
+<p>Key innovations include:</p>
+<ul>
+<li>ZCash-like transfers for any assets (fungible and non-fungible)</li>
+<li>Rewarded usage of privacy as a public good</li>
+<li>Interoperability with Ethereum via a custom bridge with trust-minimisation</li>
+<li>Vertically integrated user interfaces</li>
+</ul>
+<p>To learn more, we recommend:</p>
+<ul>
+<li>Article: <a href="https://medium.com/anomanetwork/introducing-namada-shielded-transfers-with-any-assets-dce2e579384c">Introducing Namada: Shielded Transfers with Any Assets</a></li>
+</ul>
+<h2 id="overview-of-features"><a class="header" href="#overview-of-features">Overview of features</a></h2>
+<ul>
+<li>Proof-of-Stake with governance to secure and evolve Namada</li>
+<li>Fast-finality BFT with 4-second blocks</li>
+<li>Near-zero fees</li>
+<li>Trustless 2-way Ethereum bridge via IBC implementation on ETH</li>
+<li>IBC bridges to chains that already speak IBC (all Cosmos chains)</li>
+<li>MASP</li>
+<li>Convert Circuit (shielded set rewards)</li>
+<li>A reference interface</li>
+<li>Ledger application</li>
+</ul>
+<p>To learn more about the protocol, we recommend the following in-depth resources:</p>
+<ul>
+<li>Talk at ZK8 <a href="https://youtu.be/5K6YxmZPFkE">Namada: asset-agnostic interchain privacy</a></li>
+<li><a href="https://specs.namada.net">Namada's specifications</a></li>
+<li><a href="https://github.com/anoma/namada">Codebase</a></li>
+</ul>
+<h2 id="about-this-documentation"><a class="header" href="#about-this-documentation">About this documentation</a></h2>
+<p>This book is written using <a href="https://rust-lang.github.io/mdBook/">mdBook</a>, the source can be found in the <a href="https://github.com/anoma/namada/tree/main/documentation/docs">Namada repository</a>.</p>
+<p><a href="https://github.com/anoma/namada/blob/main/CONTRIBUTING.md">Contributions</a> to the contents and the structure of this book should be made via pull requests.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="quickstart---how-to-run-a-validator-on-namada"><a class="header" href="#quickstart---how-to-run-a-validator-on-namada">Quickstart - How to run a validator on Namada</a></h1>
+<h2 id="about-this-guide"><a class="header" href="#about-this-guide">About this guide</a></h2>
+<p>This guide is for those interested in operating a Namada validator node and assumes basic knowledge of the terminal and how commands are used.</p>
+<ul>
+<li>Comments start with <code>#</code>:</li>
+</ul>
+<p><code># this is a comment make sure you read them!</code></p>
+<ul>
+<li>Sample outputs start with an arrow:</li>
+</ul>
+<p><code>➜ this is an example command line output useful for comparing</code></p>
+<h2 id="installing-namada"><a class="header" href="#installing-namada">Installing Namada</a></h2>
+<p>See <a href="user-guide/install.html">the installation guide</a> for details on installing the Namada binaries. Commands in this guide will assume you have the Namada binaries (<code>namada</code>, <code>namadan</code>, <code>namadaw</code>, <code>namadac</code>) on your $PATH.</p>
+<p>A simple way to add these binaries to one's path is to run</p>
+<pre><code class="language-shell">cp namada/target/release/namada* /usr/local/bin/
+</code></pre>
+<h2 id="joining-a-network"><a class="header" href="#joining-a-network">Joining a network</a></h2>
+<p>See <a href="testnets">the testnets page</a> for details of how to join a testnet. The rest of this guide will assume you have joined a testnet chain using the <code>namadac utils join-network</code> command.</p>
+<h2 id="run-a-ledger-node"><a class="header" href="#run-a-ledger-node">Run a ledger node</a></h2>
+<p>We recommend this step with <a href="https://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/">tmux</a>, which allows the node to keep running without needing the terminal to be open indefinitely. If not, skip to the subsequent step.</p>
+<pre><code class="language-shell">tmux
+
+# inside the tmux/or not
+
+namada ledger
+
+# can detach the tmux (Ctrl-B then D)
+</code></pre>
+<p>For a more verbose output, one can run </p>
+<pre><code class="language-shell">export ANOMA_TM_STDOUT='true'
+namada ledger
+</code></pre>
+<p>This should sync your node to the ledger and will take a while (depending on your computer). Subsequent commands (generating an account, etc.)  are unlikely to work until it is fully synced. Enquire the current block height with other participants to make sure you are synced in order to proceed.</p>
+<h2 id="account"><a class="header" href="#account">Account</a></h2>
+<p>Accounts on Namada are divided into two subcategories:</p>
+<ul>
+<li>Implicit accounts (no attached Validity Predicate)</li>
+<li>Established accounts (attached Validity Predicate)</li>
+</ul>
+<p>In order to make transactions on Namada, an account is required, and an implicit account can be created easily.</p>
+<p>An implicit account can be generated from the commands described below</p>
+<pre><code class="language-shell">namadaw address gen \
+  --alias example-implicit
+
+➜ Enter encryption password: 
+Successfully added a key and an address with alias: &quot;example-implicit&quot;
+
+</code></pre>
+<p>An implicit account with alias &quot;example-implicit&quot; has now been successfully generated and stored locally in the wallet.</p>
+<p>It is possible to derive an Established Account through submitting a transaction, signing it with the key for the implicit account. Note that this transaction, as with any transaction on Namada, will consume &quot;gas&quot;, and will require a positive balance of NAM tokens.</p>
+<p>To initialize an account operator on-chain under the alias &quot;example-established&quot;:</p>
+<pre><code class="language-shell">namadac init-account \
+  --source example-implicit \
+  --public-key example-implicit \
+  --alias example-established
+
+➜ Jan 06 22:22:19.864  INFO anoma_apps::cli::context: Chain ID: anoma-testnet-1.2.bf0181d9f7e0
+Enter decryption password: 
+Last committed epoch: 22386
+Transaction added to mempool: Response { code: Ok, data: Data([]), log: Log(&quot;Mempool validation passed&quot;), hash: transaction::Hash(9193C2B2C56AAB1B081B18DA0FBBD4B26C5EF7CEE4B35812ECCB1CC1D1443C45) }
+Transaction applied with result: {
+  &quot;info&quot;: &quot;Transaction is valid. Gas used: 6080310; Changed keys: #atest1v4ehgw36ggmyzwp5g9prgsekgsu5y32z8ycnsvpeggcnys35gv65yvzxg3zrjwphgcu5gde4lvmstw/?, #atest1v4ehgw36ggmyzwp5g9prgsekgsu5y32z8ycnsvpeggcnys35gv65yvzxg3zrjwphgcu5gde4lvmstw/ed25519_pk; VPs result: &quot;,
+  &quot;height&quot;: &quot;650627&quot;,
+  &quot;hash&quot;: &quot;4FCCBCE5D4335C3A265B5CF22D5B8999451715F8146EB13194711B5EC70B612A&quot;,
+  &quot;code&quot;: &quot;0&quot;,
+  &quot;gas_used&quot;: &quot;6080310&quot;,
+  &quot;initialized_accounts&quot;: [
+    &quot;atest1v4ehgw36ggmyzwp5g9prgsekgsu5y32z8ycnsvpeggcnys35gv65yvzxg3zrjwphgcu5gde4lvmstw&quot;
+  ]
+}
+The transaction initialized 1 new account
+➜ Added alias example-established for address atest1v4ehgw36ggmyzwp5g9prgsekgsu5y32z8ycnsvpeggcnys35gv65yvzxg3zrjwphgcu5gde4lvmstw
+</code></pre>
+<p>The &quot;faucet&quot; is a native established account on Namada that is willing to give a maximum of 1000 tokens to any user at request. Let's transfer ourselves <code>1000 NAM</code> from the faucet with the same alias using:</p>
+<pre><code class="language-shell">namadac transfer \
+  --source faucet \
+  --target example-established \
+  --token NAM \
+  --amount 1000 \
+  --signer example-established
+
+➜ Jan 06 22:24:32.926  INFO anoma_apps::cli::context: Chain ID: anoma-testnet-1.2.bf0181d9f7e0
+➜ Looking-up public key of atest1v4ehgw36ggmyzwp5g9prgsekgsu5y32z8ycnsvpeggcnys35gv65yvzxg3zrjwphgcu5gde4lvmstw from the ledger...
+Enter decryption password: 
+Last committed epoch: 22388
+Transaction added to mempool: Response { code: Ok, data: Data([]), log: Log(&quot;Mempool validation passed&quot;), hash: transaction::Hash(3A5CA1790FDF5150EF1478DE1E3B2D2F7189B0E5D396176E5E5BFC7A37C58D00) }
+Transaction applied with result: {
+  &quot;info&quot;: &quot;Transaction is valid. Gas used: 1504228; Changed keys: #atest1v4ehgw36x3prswzxggunzv6pxqmnvdj9xvcyzvpsggeyvs3cg9qnywf589qnwvfsg5erg3fkl09rg5/balance/#atest1v4ehgw36ggmyzwp5g9prgsekgsu5y32z8ycnsvpeggcnys35gv65yvzxg3zrjwphgcu5gde4lvmstw, #atest1v4ehgw36x3prswzxggunzv6pxqmnvdj9xvcyzvpsggeyvs3cg9qnywf589qnwvfsg5erg3fkl09rg5/balance/#atest1v4ehgw36gc6yxvpjxccyzvphxycrxw2xxsuyydesxgcnjs3cg9znwv3cxgmnj32yxy6rssf5tcqjm3; VPs result:  Accepted: atest1v4ehgw36ggmyzwp5g9prgsekgsu5y32z8ycnsvpeggcnys35gv65yvzxg3zrjwphgcu5gde4lvmstw, atest1v4ehgw36gc6yxvpjxccyzvphxycrxw2xxsuyydesxgcnjs3cg9znwv3cxgmnj32yxy6rssf5tcqjm3, atest1v4ehgw36x3prswzxggunzv6pxqmnvdj9xvcyzvpsggeyvs3cg9qnywf589qnwvfsg5erg3fkl09rg5;&quot;,
+  &quot;height&quot;: &quot;650706&quot;,
+  &quot;hash&quot;: &quot;26AAE9D79F62EE8E62108D8D7689F4FFF12EA613AF29C7D4CDBEA999C28C6224&quot;,
+  &quot;code&quot;: &quot;0&quot;,
+  &quot;gas_used&quot;: &quot;1504228&quot;,
+  &quot;initialized_accounts&quot;: []
+}
+</code></pre>
+<p>To query the balance of your account &quot;example-established&quot;:</p>
+<pre><code class="language-shell">namadac balance \
+  --owner example-established
+</code></pre>
+<h2 id="setting-up-the-validator-node"><a class="header" href="#setting-up-the-validator-node">Setting up the validator node</a></h2>
+<p>Initialize a validator account under any alias - in this example, &quot;example-validator&quot;:</p>
+<pre><code class="language-shell">namadac init-validator \
+  --alias example-validator \
+  --source example-established
+
+➜  Jan 06 22:26:29.927  INFO anoma_apps::cli::context: Chain ID: anoma-testnet-1.2.bf0181d9f7e0
+Generating validator account key...
+</code></pre>
+<p>You will be asked to enter encryption passwords to generate a validator account key, consensus key and a staking reward account key. After entering the encryption password and a decryption password for the &quot;example-established&quot; account's key, the transaction should be added to the mempool and applied in a future block.</p>
+<pre><code class="language-shell">➜ Transaction added to mempool: Response { code: Ok, data: Data([]), log: Log(&quot;Mempool validation passed&quot;), hash: transaction::Hash(F61D3D73CE7EFCC2021940A75B713C499D4942F820F6EC0F7924B70E7F2E751A) }
+Transaction applied with result: {
+  &quot;info&quot;: &quot;Transaction is valid. Gas used: 15139451; Changed keys: #atest1v9hx7w362pex7mmxyphkvgznw3skkefqyqszqgpqyqszqgpqyqszqgpqyqszqgpqyqszqgpqq8ylv7/validator/#atest1v4ehgw36g3prx3pjxapyvve3xvury3fkxg6nqsesxccnzw2rxdryg335xcmnysjzxdzyvd2pamfmwd/voting_power, #atest1v9hx7w362pex7mmxyphkvgznw3skkefqyqszqgpqyqszqgpqyqszqgpqyqszqgpqyqszqgpqq8ylv7/validator/#atest1v4ehgw36g3prx3pjxapyvve3xvury3fkxg6nqsesxccnzw2rxdryg335xcmnysjzxdzyvd2pamfmwd/staking_reward_address, #atest1v4ehgw36xppnjsjzx4ryxs2zgc6nx33hxpq5zve4g5u5xdjpgfz5xv2pg3ryy3zrxyenssfcxn02yg/ed25519_pk, #atest1v9hx7w362pex7mmxyphkvgznw3skkefqyqszqgpqyqszqgpqyqszqgpqyqszqgpqyqszqgpqq8ylv7/validator/#atest1v4ehgw36g3prx3pjxapyvve3xvury3fkxg6nqsesxccnzw2rxdryg335xcmnysjzxdzyvd2pamfmwd/total_deltas, #atest1v9hx7w362pex7mmxyphkvgznw3skkefqyqszqgpqyqszqgpqyqszqgpqyqszqgpqyqszqgpqq8ylv7/validator/#atest1v4ehgw36g3prx3pjxapyvve3xvury3fkxg6nqsesxccnzw2rxdryg335xcmnysjzxdzyvd2pamfmwd/state, #atest1v9hx7w362pex7mmxyphkvgznw3skkefqyqszqgpqyqszqgpqyqszqgpqyqszqgpqyqszqgpqq8ylv7/validator/#atest1v4ehgw36g3prx3pjxapyvve3xvury3fkxg6nqsesxccnzw2rxdryg335xcmnysjzxdzyvd2pamfmwd/consensus_key, #atest1v4ehgw36g3prx3pjxapyvve3xvury3fkxg6nqsesxccnzw2rxdryg335xcmnysjzxdzyvd2pamfmwd/?, #atest1v4ehgw36xppnjsjzx4ryxs2zgc6nx33hxpq5zve4g5u5xdjpgfz5xv2pg3ryy3zrxyenssfcxn02yg/?, #atest1v9hx7w362pex7mmxyphkvgznw3skkefqyqszqgpqyqszqgpqyqszqgpqyqszqgpqyqszqgpqq8ylv7/validator_set, #atest1v4ehgw36g3prx3pjxapyvve3xvury3fkxg6nqsesxccnzw2rxdryg335xcmnysjzxdzyvd2pamfmwd/ed25519_pk, #atest1v9hx7w362pex7mmxyphkvgznw3skkefqyqszqgpqyqszqgpqyqszqgpqyqszqgpqyqszqgpqq8ylv7/address_raw_hash/DB3D27BF31382E6250C06119C3FDF4672BB3DF5A; VPs result:  Accepted: atest1v9hx7w362pex7mmxyphkvgznw3skkefqyqszqgpqyqszqgpqyqszqgpqyqszqgpqyqszqgpqq8ylv7;&quot;,
+  &quot;height&quot;: &quot;650779&quot;,
+  &quot;hash&quot;: &quot;3B6AA8F3E6F1951E21703CABA4CCD24F82F6D5C38674041A7AAA1B7227B1E6B8&quot;,
+  &quot;code&quot;: &quot;0&quot;,
+  &quot;gas_used&quot;: &quot;15139451&quot;,
+  &quot;initialized_accounts&quot;: [
+    &quot;atest1v4ehgw36xppnjsjzx4ryxs2zgc6nx33hxpq5zve4g5u5xdjpgfz5xv2pg3ryy3zrxyenssfcxn02yg&quot;,
+    &quot;atest1v4ehgw36g3prx3pjxapyvve3xvury3fkxg6nqsesxccnzw2rxdryg335xcmnysjzxdzyvd2pamfmwd&quot;
+  ]
+}
+Added alias example-validator for address atest1v4ehgw36g3prx3pjxapyvve3xvury3fkxg6nqsesxccnzw2rxdryg335xcmnysjzxdzyvd2pamfmwd.
+Added alias example-validator-rewards for address atest1v4ehgw36xppnjsjzx4ryxs2zgc6nx33hxpq5zve4g5u5xdjpgfz5xv2pg3ryy3zrxyenssfcxn02yg.
+
+The validator's addresses and keys were stored in the wallet:
+  Validator address &quot;example-validator&quot;
+  Staking reward address &quot;example-validator-rewards&quot;
+  Validator account key &quot;example-validator-key&quot;
+  Consensus key &quot;example-validator-consensus-key&quot;
+  Staking reward key &quot;example-validator-rewards-key&quot;
+The ledger node has been setup to use this validator's address and consensus key.
+</code></pre>
+<p>Once the <code>init-validator</code> transaction is applied in the block and the on-chain generated validator's address is stored in your wallet, you MUST restart the <code>namada ledger</code> node to start the node as a validator that you've just created.</p>
+<p>When you restart the node, you might notice log message &quot;This node is not a validator&quot; from Tendermint. This is expected, because your validator doesn't yet have any stake in the <a href="./user-guide/ledger/pos.html">PoS system</a>.</p>
+<p>We will now add some stake to your validator account.</p>
+<p>Transfer 1000 NAM to your validator account (&quot;example-validator&quot;):</p>
+<pre><code class="language-shell">namadac transfer \
+  --source example-established \
+  --target example-validator \
+  --token NAM \
+  --amount 1000
+</code></pre>
+<pre><code class="language-shell">➜  Jan 06 22:28:17.624  INFO anoma_apps::cli::context: Chain ID: anoma-testnet-1.2.bf0181d9f7e0
+Looking-up public key of atest1v4ehgw36ggmyzwp5g9prgsekgsu5y32z8ycnsvpeggcnys35gv65yvzxg3zrjwphgcu5gde4lvmstw from the ledger...
+Enter decryption password: 
+Last committed epoch: 22392
+Transaction added to mempool: Response { code: Ok, data: Data([]), log: Log(&quot;Mempool validation passed&quot;), hash: transaction::Hash(7FD43C7573B4A62E24DBB6C99EE6C7A107DF01CC5F947517B91742E6324AE58D) }
+Transaction applied with result: {
+  &quot;info&quot;: &quot;Transaction is valid. Gas used: 1989091; Changed keys: #atest1v4ehgw36x3prswzxggunzv6pxqmnvdj9xvcyzvpsggeyvs3cg9qnywf589qnwvfsg5erg3fkl09rg5/balance/#atest1v4ehgw36g3prx3pjxapyvve3xvury3fkxg6nqsesxccnzw2rxdryg335xcmnysjzxdzyvd2pamfmwd, #atest1v4ehgw36x3prswzxggunzv6pxqmnvdj9xvcyzvpsggeyvs3cg9qnywf589qnwvfsg5erg3fkl09rg5/balance/#atest1v4ehgw36ggmyzwp5g9prgsekgsu5y32z8ycnsvpeggcnys35gv65yvzxg3zrjwphgcu5gde4lvmstw; VPs result:  Accepted: atest1v4ehgw36g3prx3pjxapyvve3xvury3fkxg6nqsesxccnzw2rxdryg335xcmnysjzxdzyvd2pamfmwd, atest1v4ehgw36ggmyzwp5g9prgsekgsu5y32z8ycnsvpeggcnys35gv65yvzxg3zrjwphgcu5gde4lvmstw, atest1v4ehgw36x3prswzxggunzv6pxqmnvdj9xvcyzvpsggeyvs3cg9qnywf589qnwvfsg5erg3fkl09rg5;&quot;,
+  &quot;height&quot;: &quot;650842&quot;,
+  &quot;hash&quot;: &quot;D251AAB5D4CD9471DB4E11DA09DEF0F15E2A3EC95EE0EE2C76766839FC352394&quot;,
+  &quot;code&quot;: &quot;0&quot;,
+  &quot;gas_used&quot;: &quot;1989091&quot;,
+  &quot;initialized_accounts&quot;: []
+}
+</code></pre>
+<p>Bond the 1000 NAM to &quot;example-validator&quot; using:</p>
+<pre><code class="language-shell">namadac bond \
+  --validator example-validator \
+  --amount 1000
+</code></pre>
+<pre><code class="language-shell">➜ Jan 06 22:29:08.903  INFO anoma_apps::cli::context: Chain ID: anoma-testnet-1.2.bf0181d9f7e0
+Looking-up public key of atest1v4ehgw36g3prx3pjxapyvve3xvury3fkxg6nqsesxccnzw2rxdryg335xcmnysjzxdzyvd2pamfmwd from the ledger...
+Enter decryption password: 
+Last committed epoch: 22393
+Transaction added to mempool: Response { code: Ok, data: Data([]), log: Log(&quot;Mempool validation passed&quot;), hash: transaction::Hash(2B814FE404F6F1D8C07CC3A51AA3038C193810251B9C50107B79698ED15A4EDC) }
+Transaction applied with result: {
+  &quot;info&quot;: &quot;Transaction is valid. Gas used: 3734939; Changed keys: #atest1v9hx7w362pex7mmxyphkvgznw3skkefqyqszqgpqyqszqgpqyqszqgpqyqszqgpqyqszqgpqq8ylv7/validator/#atest1v4ehgw36g3prx3pjxapyvve3xvury3fkxg6nqsesxccnzw2rxdryg335xcmnysjzxdzyvd2pamfmwd/total_deltas, #atest1v9hx7w362pex7mmxyphkvgznw3skkefqyqszqgpqyqszqgpqyqszqgpqyqszqgpqyqszqgpqq8ylv7/total_voting_power, #atest1v9hx7w362pex7mmxyphkvgznw3skkefqyqszqgpqyqszqgpqyqszqgpqyqszqgpqyqszqgpqq8ylv7/validator_set, #atest1v4ehgw36x3prswzxggunzv6pxqmnvdj9xvcyzvpsggeyvs3cg9qnywf589qnwvfsg5erg3fkl09rg5/balance/#atest1v4ehgw36g3prx3pjxapyvve3xvury3fkxg6nqsesxccnzw2rxdryg335xcmnysjzxdzyvd2pamfmwd, #atest1v4ehgw36x3prswzxggunzv6pxqmnvdj9xvcyzvpsggeyvs3cg9qnywf589qnwvfsg5erg3fkl09rg5/balance/#atest1v9hx7w362pex7mmxyphkvgznw3skkefqyqszqgpqyqszqgpqyqszqgpqyqszqgpqyqszqgpqq8ylv7, #atest1v9hx7w362pex7mmxyphkvgznw3skkefqyqszqgpqyqszqgpqyqszqgpqyqszqgpqyqszqgpqq8ylv7/validator/#atest1v4ehgw36g3prx3pjxapyvve3xvury3fkxg6nqsesxccnzw2rxdryg335xcmnysjzxdzyvd2pamfmwd/voting_power, #atest1v9hx7w362pex7mmxyphkvgznw3skkefqyqszqgpqyqszqgpqyqszqgpqyqszqgpqyqszqgpqq8ylv7/bond/#atest1v4ehgw36g3prx3pjxapyvve3xvury3fkxg6nqsesxccnzw2rxdryg335xcmnysjzxdzyvd2pamfmwd/#atest1v4ehgw36g3prx3pjxapyvve3xvury3fkxg6nqsesxccnzw2rxdryg335xcmnysjzxdzyvd2pamfmwd; VPs result:  Accepted: atest1v4ehgw36g3prx3pjxapyvve3xvury3fkxg6nqsesxccnzw2rxdryg335xcmnysjzxdzyvd2pamfmwd, atest1v9hx7w362pex7mmxyphkvgznw3skkefqyqszqgpqyqszqgpqyqszqgpqyqszqgpqyqszqgpqq8ylv7, atest1v4ehgw36x3prswzxggunzv6pxqmnvdj9xvcyzvpsggeyvs3cg9qnywf589qnwvfsg5erg3fkl09rg5;&quot;,
+  &quot;height&quot;: &quot;650869&quot;,
+  &quot;hash&quot;: &quot;14F5C67D27E2F9695EA40ABEA2DEC69F5B0FFEF5DFD7CB7D0FC397CC8A618BA8&quot;,
+  &quot;code&quot;: &quot;0&quot;,
+  &quot;gas_used&quot;: &quot;3734939&quot;,
+  &quot;initialized_accounts&quot;: []
+}
+</code></pre>
+<p>Check your bond:</p>
+<pre><code class="language-shell">namadac bonds \
+  --validator example-validator
+
+➜ Jan 06 22:30:42.798  INFO anoma_apps::cli::context: Chain ID: anoma-testnet-1.2.bf0181d9f7e0
+Last committed epoch: 22394
+Self-bonds:
+  Active from epoch 22395: Δ 1000
+Bonds total: 1000
+</code></pre>
+<p>Check the voting power - this will be 0 until the active-from epoch is reached (in this case <code>22395</code>):</p>
+<pre><code class="language-shell">namadac voting-power \
+  --validator example-validator
+
+➜ Jan 06 22:31:24.908  INFO anoma_apps::cli::context: Chain ID: anoma-testnet-1.2.bf0181d9f7e0
+Last committed epoch: 22395
+Validator atest1v4ehgw36g3prx3pjxapyvve3xvury3fkxg6nqsesxccnzw2rxdryg335xcmnysjzxdzyvd2pamfmwd is active, voting power: 1
+Total voting power: 44
+</code></pre>
+<p>Note that with the above command, you can also specify <code>--epoch</code> argument to check a future epoch.</p>
+<p>Congratulations, you have set up a validator node!</p>
+<footer id="open-on-gh">Found a bug? <a href="https://github.com/anoma/namada/edit/main/documentation/docs/src/quick-start.md">Edit this page on GitHub.</a></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="user-guide"><a class="header" href="#user-guide">User Guide</a></h1>
+<p>Welcome to Namada's user guide!</p>
+<p>This guide will teach you how to install, operate and interact with the Namada ledger node, the client, and the wallet.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="install-namada"><a class="header" href="#install-namada">Install Namada</a></h1>
+<div id="admonition-warning" class="admonition warning">
+<div class="admonition-title">
+<p>Warning</p>
+<p><a class="admonition-anchor-link" href="user-guide/install.html#admonition-warning"></a></p>
+</div>
+<div>
+<p>At the moment, Namada only supports Linux and macOS.</p>
+</div>
+</div>
+<h2 id="hardware-requirements"><a class="header" href="#hardware-requirements">Hardware Requirements</a></h2>
+<p>This section covers the minimum and recommended hardware requirements for engaging with Namada as a validator node.</p>
+<h3 id="minimal-hardware-requirements"><a class="header" href="#minimal-hardware-requirements">Minimal Hardware Requirements</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Hardware</th><th>Minimal Specifications</th></tr></thead><tbody>
+<tr><td>CPU</td><td>x86_64 or arm64 processor with at least 4 physical cores</td></tr>
+<tr><td>RAM</td><td>16GB DDR4</td></tr>
+<tr><td>Storage</td><td>at least 60GB SSD (NVMe SSD is recommended. HDD will be enough for localnet only)</td></tr>
+</tbody></table>
+</div>
+<p>There are different ways to install Namada:</p>
+<ul>
+<li><a href="user-guide/install.html#from-source">From Source</a></li>
+<li><a href="user-guide/install.html#from-binaries">From Binaries</a></li>
+<li><a href="user-guide/install.html#from-docker">From Docker</a></li>
+</ul>
+<h2 id="from-source"><a class="header" href="#from-source">From Source</a></h2>
+<p>If you'd like to install Namada from source you will have to install some dependencies first: <a href="https://www.rust-lang.org/tools/install">Rust</a>, <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">Git</a>, Clang, OpenSSL and LLVM.</p>
+<p>First, <a href="https://www.rust-lang.org/tools/install">install Rust</a> by following the instructions from the official page.</p>
+<p>At the end of the installation, make sure that Cargo's bin directory ($HOME/.cargo/bin) is available on your PATH environment variable. You can either restart your shell or run <code>source $HOME/.cargo/env</code> to continue.</p>
+<p>If you already have Rust installed, make sure you're using the latest version by running:</p>
+<pre><code class="language-shell">rustup update
+</code></pre>
+<p>Then, install the remaining dependencies.</p>
+<p><strong>Ubuntu:</strong> running the following command should install everything needed:</p>
+<pre><code class="language-shell">sudo apt-get install -y make git-core libssl-dev pkg-config libclang-12-dev build-essential
+</code></pre>
+<p><strong>Mac:</strong> installing the Xcode command line tools should provide you with almost everything you need:</p>
+<pre><code class="language-shell">xcode-select --install
+</code></pre>
+<p>Now, that you have all dependencies installed you can clone the source code from the <a href="https://github.com/anoma/namada">Namada repository</a> and build it with:</p>
+<div id="admonition-warning-1" class="admonition warning">
+<div class="admonition-title">
+<p>Warning</p>
+<p><a class="admonition-anchor-link" href="user-guide/install.html#admonition-warning-1"></a></p>
+</div>
+<div>
+<p>During internal and private testnets, checkout the latest testnet branch using <code>git checkout $NAMADA_TESTNET_BRANCH</code>.</p>
+</div>
+</div>
+<pre><code class="language-shell">git clone https://github.com/anoma/namada.git
+cd namada 
+make install
+</code></pre>
+<h2 id="from-binaries"><a class="header" href="#from-binaries">From Binaries</a></h2>
+<div id="admonition-warning-2" class="admonition warning">
+<div class="admonition-title">
+<p>Warning</p>
+<p><a class="admonition-anchor-link" href="user-guide/install.html#admonition-warning-2"></a></p>
+</div>
+<div>
+<p>Prebuilt binaries might not be available for a specific release or architecture, in this case you have to <a href="user-guide/install.html#from-source">build from source</a>.</p>
+</div>
+</div>
+<p>If you'd like to install Namada from binaries you will have to install some dependencies first: <a href="https://docs.tendermint.com/master/introduction/install.html">Tendermint</a> <code>0.34.x</code> and GLIBC <code>v2.29</code> or higher.</p>
+<p>Let's install Tendermint.</p>
+<p>You can either follow the instructions on the <a href="https://docs.tendermint.com/master/introduction/install.html">Tendermint guide</a> or download the <code>get_tendermint.sh</code> script from the <a href="https://github.com/anoma/namada/blob/master/scripts/install/get_tendermint.sh">Namada repository</a> and execute it (will ask you for <code>root</code> access):</p>
+<pre><code class="language-shell">curl -LO https://raw.githubusercontent.com/namada/anoma/main/scripts/install/get_tendermint.sh
+chmod +x get_tendermint.sh
+./get_tendermint.sh
+</code></pre>
+<p>Finally, you should have GLIBC <code>v2.29</code> or higher.</p>
+<p><strong>MacOS</strong>: the system-provided glibc should be recent enough.</p>
+<p><strong>Ubuntu 20.04</strong>: this is installed by default and you don't have to do anything more.</p>
+<p><strong>Ubuntu 18.04</strong>: glibc has <code>v2.27</code> by default which is lower than the required version to run Namada. We recommend to directly <a href="user-guide/install.html#from-source">install from source</a> or upgrade to Ubuntu 19.04, instead of updating glibc to the required version, since the latter way can be a messy and tedious task. In case, updating glibc would interest you this <a href="http://www.linuxfromscratch.org/lfs/view/9.0-systemd/chapter05/glibc.html">website</a> gives you the steps to build the package from source.</p>
+<p>Now, that you have all dependencies installed you can download the latest binary release from our <a href="https://github.com/anoma/namada/releases">releases page</a> by choosing the appropriate architecture.</p>
+<h2 id="from-docker"><a class="header" href="#from-docker">From Docker</a></h2>
+<p>Go to <a href="https://hub.docker.com/r/heliaxdev/anoma">heliaxdev dockerhub account</a> and pull the image.</p>
+<footer id="open-on-gh">Found a bug? <a href="https://github.com/anoma/namada/edit/main/documentation/docs/src/user-guide/install.md">Edit this page on GitHub.</a></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="getting-started"><a class="header" href="#getting-started">Getting started</a></h1>
+<p>This guide assumes that the Namada binaries are <a href="user-guide/./install.html">installed</a> and available on path. These are:</p>
+<ul>
+<li><code>namada</code>: The main binary that can be used to interact with all the components of Namada</li>
+<li><code>namadan</code>: The ledger node</li>
+<li><code>namadac</code>: The client</li>
+<li><code>namadaw</code>: The wallet</li>
+</ul>
+<p>The main binary <code>namada</code> has sub-commands for all of the other binaries:</p>
+<ul>
+<li><code>namada client = namadac</code></li>
+<li><code>namada node   = namadan</code></li>
+<li><code>namada wallet = namadaw</code></li>
+</ul>
+<p>To explore the command-line interface, add <code>--help</code> argument at any sub-command level to find out any possible sub-commands and/or arguments.</p>
+<details id="admonition-adding-binaries-to-path" class="admonition tip">
+<summary class="admonition-title">
+<p>Adding binaries to path</p>
+<p><a class="admonition-anchor-link" href="user-guide/getting-started.html#admonition-adding-binaries-to-path"></a></p>
+</summary>
+<div>
+<p>The binaries should be added to <code>$PATH</code> from the <code>make install</code> command. However, if this for some reason did not work, a solution may be to copy the binaries from <code>namada/target/release</code> to <code>home/$USER/.local/bin/</code> for example:</p>
+<p><code>sudo cp namada/target/release/namada* /home/alice/.local/bin/</code></p>
+</div>
+</details>
+<h2 id="join-a-network"><a class="header" href="#join-a-network">Join a network</a></h2>
+<p>After you install Namada, you will need to join a live network (e.g. testnet) to be able to interact with a chain and execute most available commands. You can join a network with the following command:</p>
+<pre><code>namada client utils join-network --chain-id=&lt;network-chain-id&gt;
+</code></pre>
+<p>To join a testnet, head over to the <a href="user-guide/../testnets/README.html">testnets</a> section for details on how to do this.</p>
+<h2 id="start-your-node"><a class="header" href="#start-your-node">Start your node</a></h2>
+<p>As soon as you are connected to a network, you can start your local node with:</p>
+<pre><code>namada ledger
+</code></pre>
+<p>Learn more about the configuration of the Ledger in <a href="user-guide/./ledger.html">The Ledger</a> section</p>
+<footer id="open-on-gh">Found a bug? <a href="https://github.com/anoma/namada/edit/main/documentation/docs/src/user-guide/getting-started.md">Edit this page on GitHub.</a></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="namada-wallet-guide"><a class="header" href="#namada-wallet-guide">Namada Wallet Guide</a></h1>
+<p>This document describes the different wallet concepts and options that are available to users of Namada who want to be able to <a href="user-guide/wallet.html#send-and-receive-nam-tokens">send, receive and interact</a> with NAM tokens on the Namada blockchain.</p>
+<!-- I want to either hyperlink or delete the below. I don't understand-->
+<p>Check out the different options to generate a wallet:</p>
+<ul>
+<li><a href="user-guide/wallet.html#file-system-wallet">File System Wallet</a></li>
+<li><a href="user-guide/wallet.html#web-wallet">Web Wallet</a></li>
+<li><a href="user-guide/wallet.html#paper-wallet">Paper Wallet</a></li>
+<li><a href="user-guide/wallet.html#hardware-wallet">Hardware Wallet</a></li>
+</ul>
+<h2 id="an-introduction-to-namada-addresses"><a class="header" href="#an-introduction-to-namada-addresses">An introduction to Namada Addresses</a></h2>
+<p>The purpose of the Namada wallet is to provide a user-interface to store and manage both keys and addresses. In this context, keys are (potentially) very large integers that have some meaning on an eliptic curve. Keys are the fundamental building blocks for accounts on Namada. Keys come in the form of <em>pairs</em> (secret and public), can be used to derive the <strong>account address</strong> (first 40 chars of the SHA256 hash of the public key).</p>
+<p>All accounts in Namada have a unique address, exactly one Validity Predicate and optionally any additional data in its dynamic storage sub-space.</p>
+<p>There are currently 3 types of account addresses:</p>
+<ul>
+<li><strong>Implicit <em>(not fully supported yet)</em>:</strong> An implicit account is derived from your keypair and can be used to authorize certain transactions from the account. They can be used as recipients of transactions even if the account has not been used on-chain before.</li>
+<li><strong>Established:</strong> Used for accounts that allow the deployment of custom validation logic. These must be created on-chain via a transaction (e.g. <a href="user-guide/wallet.html#initialize-an-established-account">initialize an account</a>). The address is generated on-chain and is not known until the transaction is applied (the user provides randomness).</li>
+<li><strong>Internal:</strong> Special internal accounts, such as protocol parameters account, PoS and IBC.</li>
+</ul>
+<h2 id="manage-keypairs"><a class="header" href="#manage-keypairs">Manage keypairs</a></h2>
+<p>Namada uses <a href="https://en.wikipedia.org/wiki/EdDSA#Ed25519">ed25519</a> keypairs for signing cryptographic operations on the blockchain.</p>
+<p>To manage your keys, various sub-commands are available under:</p>
+<pre><code class="language-shell">namada wallet key
+</code></pre>
+<h3 id="generate-a-keypair"><a class="header" href="#generate-a-keypair">Generate a keypair</a></h3>
+<p>It is possible to generate keys using the CLI. By doing so, an implicit account address is also derived in the process and added to storage.</p>
+<pre><code class="language-shell">namada wallet key gen --alias my-key
+</code></pre>
+<div id="admonition-note" class="admonition note">
+<div class="admonition-title">
+<p>Note</p>
+<p><a class="admonition-anchor-link" href="user-guide/wallet.html#admonition-note"></a></p>
+</div>
+<div>
+<p>The derived implicit address shares the same <code>my-key</code> alias. The previous command has the same effect as <code>namada wallet address gen --alias my-key</code>.</p>
+</div>
+</div>
+<h3 id="list-all-known-keys"><a class="header" href="#list-all-known-keys">List all known keys</a></h3>
+<pre><code class="language-shell">namada wallet key list
+</code></pre>
+<h2 id="manage-addresses"><a class="header" href="#manage-addresses">Manage addresses</a></h2>
+<p>To manage addresses, similar to keys, various sub-commands are available:</p>
+<pre><code class="language-shell">namada wallet address
+</code></pre>
+<h3 id="generate-an-implicit-address"><a class="header" href="#generate-an-implicit-address">Generate an implicit address</a></h3>
+<pre><code class="language-shell">namada wallet address gen --alias my-account
+</code></pre>
+<div id="admonition-note-1" class="admonition note">
+<div class="admonition-title">
+<p>Note</p>
+<p><a class="admonition-anchor-link" href="user-guide/wallet.html#admonition-note-1"></a></p>
+</div>
+<div>
+<p>Note that this will also generate and save a key from which the address was derived and save it under the same <code>my-account</code> alias. Thus, this command has the same effect as <code>namada wallet key gen --alias my-account</code>.</p>
+</div>
+</div>
+<h3 id="list-all-known-addresses"><a class="header" href="#list-all-known-addresses">List all known addresses</a></h3>
+<pre><code class="language-shell">namada wallet address list
+</code></pre>
+<h2 id="file-system-wallet"><a class="header" href="#file-system-wallet">File System Wallet</a></h2>
+<p>By default, the Namada Wallet is stored under <code>.namada/{chain_id}/wallet.toml</code> where keys are stored encrypted. You can change the default base directory path with <code>--base-dir</code> and you can allow the storage of unencrypted keypairs with the flag <code>--unsafe-dont-encrypt</code>.</p>
+<p>If the wallet doesn't already exist, it will be created for you as soon as you run a command that tries to access the wallet. A newly created wallet will be pre-loaded with some internal addresses like <code>pos</code>, <code>pos_slash_pool</code>, <code>masp</code> and more.</p>
+<p>Currently, the Namada client can load the password via:</p>
+<ul>
+<li><strong>Stdin:</strong> the client will prompt for a password.</li>
+<li><strong>Env variable:</strong> by exporting a ENV variable called <code>ANOMA_WALLET_PASSWORD</code> with value of the actual password.</li>
+<li><strong>File:</strong> by exporting an ENV variable called <code>ANOMA_WALLET_PASSWORD_FILE</code> with value containing the path to a file containing the password.</li>
+</ul>
+<h2 id="web-wallet"><a class="header" href="#web-wallet">Web Wallet</a></h2>
+<p>The Web Wallet for Namada is currently in closed beta.</p>
+<h2 id="paper-wallet"><a class="header" href="#paper-wallet">Paper Wallet</a></h2>
+<p>At the moment, the Namada CLI doesn't provide a Paper Wallet.</p>
+<h2 id="hardware-wallet"><a class="header" href="#hardware-wallet">Hardware Wallet</a></h2>
+<p>The Ledger Hardware Wallet is currently in development.</p>
+<h2 id="send-and-receive-nam-tokens"><a class="header" href="#send-and-receive-nam-tokens">Send and Receive NAM tokens</a></h2>
+<p>In Namada, tokens are implemented as accounts with the <a href="https://github.com/anoma/namada/blob/namada/wasm/wasm_source/src/vp_token.rs">Token Validity Predicate</a>. It checks that its total supply is preserved in any transaction that uses this token. Your wallet will be pre-loaded with some token addresses that are initialized in the genesis block.</p>
+<h3 id="initialize-an-established-account"><a class="header" href="#initialize-an-established-account">Initialize an established account</a></h3>
+<p>If you already have a key in your wallet, you can skip this step. Otherwise, <a href="user-guide/wallet.html#generate-a-keypair">generate a new keypair</a> now.</p>
+<p>Then, send a transaction to initialize your new established account and save its address with the alias <code>my-new-acc</code>. The <code>my-key</code> public key will be written into the account's storage for authorizing future transactions. We also sign this transaction with <code>my-key</code>.</p>
+<pre><code class="language-shell">namada client init-account \
+  --alias my-new-acc \
+  --public-key my-key \
+  --source my-key
+</code></pre>
+<p>Once this transaction has been applied, the client will automatically see the new address created by the transaction and add it to your Wallet with the chosen alias <code>my-new-acc</code>.</p>
+<p>This command uses the prebuilt <a href="https://github.com/anoma/namada/blob/namada/wasm/wasm_source/src/vp_user.rs">User Validity Predicate</a>.</p>
+<h3 id="send-a-payment"><a class="header" href="#send-a-payment">Send a Payment</a></h3>
+<p>To submit a regular token transfer from your account to the <code>validator-1</code> address:</p>
+<pre><code class="language-shell">namada client transfer \
+  --source my-new-acc \
+  --target validator-1 \
+  --token NAM \
+  --amount 10
+</code></pre>
+<p>This command will attempt to find and use the key of the source address to sign the transaction.</p>
+<h3 id="see-your-balance"><a class="header" href="#see-your-balance">See your balance</a></h3>
+<p>To query token balances for a specific token and/or owner:</p>
+<pre><code class="language-shell">namada client balance --token NAM --owner my-new-acc
+</code></pre>
+<div id="admonition-note-2" class="admonition note">
+<div class="admonition-title">
+<p>Note</p>
+<p><a class="admonition-anchor-link" href="user-guide/wallet.html#admonition-note-2"></a></p>
+</div>
+<div>
+<p>For any client command that submits a transaction (<code>init-account</code>, <code>transfer</code>, <code>tx</code>, <code>update</code> and <a href="user-guide/ledger/pos.html">PoS transactions</a>), you can use the <code>--dry-run</code> flag to simulate the transaction being applied in the block and see what would be the result.</p>
+</div>
+</div>
+<h3 id="see-every-known-addresses-balance"><a class="header" href="#see-every-known-addresses-balance">See every known addresses' balance</a></h3>
+<p>You can see the token's addresses known by the client when you query all tokens balances:</p>
+<pre><code class="language-shell">namada client balance
+</code></pre>
+<footer id="open-on-gh">Found a bug? <a href="https://github.com/anoma/namada/edit/main/documentation/docs/src/user-guide/wallet.md">Edit this page on GitHub.</a></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="the-namada-ledger"><a class="header" href="#the-namada-ledger">The Namada Ledger</a></h1>
+<p>To start a local Namada ledger node, run:</p>
+<pre><code class="language-shell">namada ledger
+</code></pre>
+<blockquote>
+<p>Note: You need to have <a href="user-guide/./getting-started.html">joined a network</a> before you start the ledger. It throws an error if no network has been configured.</p>
+</blockquote>
+<p>The node will attempt to connect to the persistent validator nodes and other peers in the network, and synchronize to the latest block.</p>
+<p>By default, the ledger will store its configuration and state in the <code>.anoma</code> directory relative to the current working directory. You can use the <code>--base-dir</code> CLI global argument or <code>ANOMA_BASE_DIR</code> environment variable to change it.</p>
+<p>The ledger also needs access to the built WASM files that are used in the genesis block. These files are included in release and shouldn't be modified, otherwise your node will fail with a consensus error on the genesis block. By default, these are expected to be in the <code>wasm</code> directory, relative to the current working directory. This can also be set with the <code>--wasm-dir</code> CLI global argument, <code>ANOMA_WASM_DIR</code> environment variable or the configuration file.</p>
+<p>The ledger configuration is stored in <code>.anoma/{chain_id}/config.toml</code> (with
+default <code>--base-dir</code>). It is created when you join the network. You can modify
+that file to change the configuration of your node. All values can also be set
+via environment variables. Names of the recognized environment variables are
+derived from the configuration keys by: uppercase every letter of the key,
+insert <code>.</code> or <code>__</code> for each nested value and prepend <code>ANOMA_</code>. For example,
+option <code>p2p_pex</code> in <code>[ledger.tendermint]</code> can be set by
+<code>ANOMA_LEDGER__TENDERMINT__P2P_PEX=true|false</code> or
+<code>ANOMA_LEDGER.TENDERMINT.P2P_PEX=true|false</code> in the environment (Note: only the
+double underscore form can be used in Bash, because Bash doesn't allow dots in
+environment variable names).</p>
+<footer id="open-on-gh">Found a bug? <a href="https://github.com/anoma/namada/edit/main/documentation/docs/src/user-guide/ledger.md">Edit this page on GitHub.</a></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="shielded-transfers"><a class="header" href="#shielded-transfers">Shielded transfers</a></h1>
+<p>In Namada, shielded transfers are enabled by the Multi-Asset Shielded Pool (MASP). The MASP is a zero-knowledge circuit (zk-SNARK) that extends the Zcash Sapling circuit to add support for sending arbitrary assets. All assets in the pool share the same anonymity set, this means that the more transactions are issued to MASP, the stronger are the privacity guarantees.</p>
+<h2 id="using-masp"><a class="header" href="#using-masp">Using MASP</a></h2>
+<p>If you are familiar with Zcash, the set of interactions you can execute with the MASP are similar:</p>
+<ul>
+<li><a href="user-guide/ledger/masp.html#shielding-transfers"><strong>Shielding transfers:</strong> transparent to shielded addresses</a></li>
+<li><a href="user-guide/ledger/masp.html#shielded-transfers"><strong>Shielded transfers:</strong> shielded to shielded addresses</a></li>
+<li><a href="user-guide/ledger/masp.html#deshielding-tranfers"><strong>Deshielding transfers:</strong> shielded to transparent addresses</a></li>
+</ul>
+<div id="admonition-lexicon" class="admonition info">
+<div class="admonition-title">
+<p>Lexicon</p>
+<p><a class="admonition-anchor-link" href="user-guide/ledger/masp.html#admonition-lexicon"></a></p>
+</div>
+<div>
+<ul>
+<li>A <strong>Spending Key</strong> is a type of private key that allows any user in possession of it to spend the balance of the associated address. For shielded addresses, possessing the Spending Key also allows the user to view the address’ balance and transaction data.</li>
+<li>A <strong>Viewing Key</strong> allows any user in possession of it to view and disclose transaction details. It is derived from the Spending Key and hold the same alias.</li>
+</ul>
+</div>
+</div>
+<h3 id="shielding-transfers"><a class="header" href="#shielding-transfers">Shielding transfers</a></h3>
+<p>To try out shielded transfers, first you need to be in possession of a
+transparent account with some token balance.</p>
+<h4 id="create-your-transparent-account"><a class="header" href="#create-your-transparent-account">Create your transparent account</a></h4>
+<p>Generate an implicit account:</p>
+<pre><code class="language-shell">namadaw address gen --alias [your-implicit-account-alias]
+</code></pre>
+<p>Then, create an established account on-chain using the implicit account you've just generated:</p>
+<pre><code class="language-shell">namadac init-account \
+    --source [your-implicit-account-alias] \
+    --public-key [your-implicit-account-alias] \
+    --alias [your-established-account-alias]
+</code></pre>
+<h4 id="get-tokens-from-the-testnet-faucet"><a class="header" href="#get-tokens-from-the-testnet-faucet">Get tokens from the Testnet Faucet</a></h4>
+<div id="admonition-testnet-faucet-tokens" class="admonition info">
+<div class="admonition-title">
+<p>Testnet Faucet Tokens</p>
+<p><a class="admonition-anchor-link" href="user-guide/ledger/masp.html#admonition-testnet-faucet-tokens"></a></p>
+</div>
+<div>
+<p>The testnet tokens which the faucet can provide you have the aliases <code>NAM</code>,
+<code>BTC</code>, <code>ETH</code>, <code>DOT</code>, <code>Schnitzel</code>, <code>Apfel</code>, and <code>Kartoffel</code>. The faucet
+will transfer these in increments of 1000 maximum at a time.</p>
+</div>
+</div>
+<pre><code class="language-shell">namadac transfer \
+    --token btc \
+    --amount 1000 \
+    --source faucet \
+    --target [your-established-account-alias] \
+    --signer [your-established-account-alias]
+</code></pre>
+<p>Now that you have a transparent account with some tokens, you can generate a Spending Key to hold your shielded balances.</p>
+<h4 id="generate-your-spending-key"><a class="header" href="#generate-your-spending-key">Generate your Spending Key</a></h4>
+<p>You can randomly generate a new Spending Key with:</p>
+<pre><code class="language-shell">namadaw masp gen-key --alias [your-spending-key-alias]
+</code></pre>
+<div id="admonition-info" class="admonition info">
+<div class="admonition-title">
+<p>Info</p>
+<p><a class="admonition-anchor-link" href="user-guide/ledger/masp.html#admonition-info"></a></p>
+</div>
+<div>
+<p>This command will also generate a corresponding Viewing Key sharing
+the same alias.</p>
+</div>
+</div>
+<h4 id="create-a-new-payment-address"><a class="header" href="#create-a-new-payment-address">Create a new payment address</a></h4>
+<p>To create a payment address from your Spending key, use:</p>
+<pre><code class="language-shell">namadaw masp gen-addr \
+    --key [your-spending-key-alias] \
+    --alias [your-payment-address-alias]
+</code></pre>
+<div id="admonition-note" class="admonition note">
+<div class="admonition-title">
+<p>Note</p>
+<p><a class="admonition-anchor-link" href="user-guide/ledger/masp.html#admonition-note"></a></p>
+</div>
+<div>
+<p>This will generate a different payment address each time you run it.
+Payment addresses can be reused or discarded as you like, and cannot be
+correlated with one another.</p>
+</div>
+</div>
+<h4 id="send-your-shielding-transfer"><a class="header" href="#send-your-shielding-transfer">Send your shielding transfer</a></h4>
+<p>Once you have a payment address, transfer a balance from your
+transparent account to your shielded account with something like:</p>
+<pre><code class="language-shell">namadac transfer \
+    --source [your-established-account-alias] \
+    --target [your-payment-address-alias] \
+    --token btc \
+    --amount 100
+</code></pre>
+<h4 id="view-your-balance"><a class="header" href="#view-your-balance">View your balance</a></h4>
+<p>Once this transfer goes through, you can view your Spending Key's
+balance:</p>
+<pre><code class="language-shell">namadac balance --owner [your-spending-key-alias]
+</code></pre>
+<h3 id="shielded-transfers-1"><a class="header" href="#shielded-transfers-1">Shielded transfers</a></h3>
+<p>Now that you have a shielded balance, it can be transferred to a
+another shielded address:</p>
+<pre><code class="language-shell">namadac transfer \
+    --source [your-spending-key-alias] \
+    --target [some-payment-address] \
+    --token btc \
+    --amount 50 \
+    --signer [your-established-account-alias]
+</code></pre>
+<h3 id="deshielding-tranfers"><a class="header" href="#deshielding-tranfers">Deshielding tranfers</a></h3>
+<p>You can also transfer back your balance to some transparent account:</p>
+<pre><code class="language-shell">namadac transfer \
+    --source [your-spending-key-alias] \
+    --target [some-transparent-address] \
+    --token btc \
+    --amount 50 \
+    --signer [your-established-account-alias]
+</code></pre>
+<h3 id="shielded-addresskey-generation"><a class="header" href="#shielded-addresskey-generation">Shielded Address/Key Generation</a></h3>
+<h4 id="spending-key-generation"><a class="header" href="#spending-key-generation">Spending Key Generation</a></h4>
+<p>The client should be able to generate a spending key and automatically
+derive a viewing key for it. The spending key should be usable as the
+source of a transfer. The viewing key should be usable to determine the
+total unspent notes that the spending key is authorized to spend. It
+should not be possible to directly or indirectly use the viewing key to
+spend funds. Below is an example of how spending keys should be
+generated:</p>
+<pre><code>namadaw --masp gen-key --alias my-sk
+</code></pre>
+<h4 id="payment-address-generation"><a class="header" href="#payment-address-generation">Payment Address Generation</a></h4>
+<p>The client should be able to generate a payment address from a
+spending key or viewing key. This payment address should be usable
+to send notes to the originating spending key. It should not be
+directly or indirectly usable to either spend notes or view shielded
+balances. Below are examples of how payment addresses should be
+generated:</p>
+<pre><code>namadaw masp gen-addr --alias my-pa1 --key my-sk
+namadaw masp gen-addr --alias my-pa2 --key my-vk
+</code></pre>
+<h4 id="manual-keyaddress-addition"><a class="header" href="#manual-keyaddress-addition">Manual Key/Address Addition</a></h4>
+<p>The client should be able to directly add raw spending keys, viewing
+keys, and payment addresses. Below are examples of how these objects
+should be added:</p>
+<pre><code>namadaw masp add --alias my-sk --value xsktest1qqqqqqqqqqqqqq9v0sls5r5de7njx8ehu49pqgmqr9ygelg87l5x8y4s9r0pjlvu69au6gn3su5ewneas486hdccyayx32hxvt64p3d0hfuprpgcgv2q9gdx3jvxrn02f0nnp3jtdd6f5vwscfuyum083cvfv4jun75ak5sdgrm2pthzj3sflxc0jx0edrakx3vdcngrfjmru8ywkguru8mxss2uuqxdlglaz6undx5h8w7g70t2es850g48xzdkqay5qs0yw06rtxcvedhsv
+namadaw masp add --alias my-vk --value xfvktest1qqqqqqqqqqqqqqpagte43rsza46v55dlz8cffahv0fnr6eqacvnrkyuf9lmndgal7erg38awgq60r259csg3lxeeyy5355f5nj3ywpeqgd2guqd73uxz46645d0ayt9em88wflka0vsrq29u47x55psw93ly80lvftzdr5ccrzuuedtf6fala4r4nnazm9y9hq5yu6pq24arjskmpv4mdgfn3spffxxv8ugvym36kmnj45jcvvmm227vqjm5fq8882yhjsq97p7xrwqt7n63v
+namadaw masp add --alias my-pa --value patest10qy6fuwef9leccl6dfm7wwlyd336x4y32hz62cnrvlrl6r5yk0jnw80kus33x34a5peg2xc4csn
+</code></pre>
+<h3 id="making-shielded-transactions"><a class="header" href="#making-shielded-transactions">Making Shielded Transactions</a></h3>
+<h4 id="shielding-transactions"><a class="header" href="#shielding-transactions">Shielding Transactions</a></h4>
+<p>The client should be able to make shielding transactions by providing a
+transparent source address and a shielded payment address. The
+main transparent effect of such a transaction should be a deduction of
+the specified amount from the source address, and a corresponding
+increase in the balance of the MASP validity predicate's address. The
+gas fee is charged to the source address. Once the transaction is
+completed, the spending key that was used to generate the payment address
+will have the authority to spend the amount that was send. Below is an
+example of how a shielding transacion should be made:</p>
+<pre><code>namadac transfer --source Bertha --amount 50 --token BTC --target my-pa
+</code></pre>
+<h4 id="unshielding-transactions"><a class="header" href="#unshielding-transactions">Unshielding Transactions</a></h4>
+<p>The client should be able to make unshielding transactions by providing
+a shielded spending key and a transparent target address. The main
+transparent effect of such a transaction should be a deduction of the
+specified amount from the MASP validity predicate's address and a
+corresponding increase in the transparent target address. The gas fee
+is charged to the signer's address (which should default to the target
+address). Once the transaction is complete, the spending key will no
+longer be able to spend the transferred amount. Below is an example of
+how an unshielding transaction should be made:</p>
+<pre><code>namadac transfer --target Bertha --amount 45 --token BTC --source my-sk
+</code></pre>
+<h4 id="shielded-transactions"><a class="header" href="#shielded-transactions">Shielded Transactions</a></h4>
+<p>The client should be able to make shielded transactions by providing a
+shielded spending key and a shielded payment address. There should be
+no change in the transparent balance of the MASP validity predicate's
+address. The gas fee is charged to the signer's address. Once the
+transaction is complete, the spending key will no longer be able to
+spend the transferred amount, but the spending key that was used to
+(directly or indirectly) generate the payment address will. Below is
+an example of how a shielded transaction should be made:</p>
+<pre><code>namadac transfer --source my-sk --amount 5 --token BTC --target your-pa
+</code></pre>
+<h3 id="viewing-shielded-balances"><a class="header" href="#viewing-shielded-balances">Viewing Shielded Balances</a></h3>
+<p>The client should be able to view shielded balances. The most
+general output should be a list of pairs, each denoting a token
+type and the unspent amount of that token present at each shielded
+address whose viewing key is represented in the wallet. Note that
+it should be possible to restrict the balance query to check only
+a specific viewing key or for a specific token type. Below are
+examples of how balance queries should be made:</p>
+<pre><code>namadac balance
+namadac balance --owner my-key
+namadac balance --owner my-key --token BTC
+namadac balance --token BTC
+</code></pre>
+<h3 id="listing-shielded-keysaddresses"><a class="header" href="#listing-shielded-keysaddresses">Listing Shielded Keys/Addresses</a></h3>
+<p>The wallet should be able to list all the spending keys, viewing keys,
+and payment addresses that it stores. Below are examples of how the
+wallet's storage should be queried:</p>
+<pre><code>namadaw masp list-keys
+namadaw masp list-keys --unsafe-show-secret
+namadaw masp list-keys --unsafe-show-secret --decrypt
+namadaw masp list-addrs
+</code></pre>
+<h3 id="finding-shielded-keysaddresses"><a class="header" href="#finding-shielded-keysaddresses">Finding Shielded Keys/Addresses</a></h3>
+<p>The wallet should be able to find any spending key, viewing key or
+payment address when given its alias. Below are examples of how the
+wallet's storage should be queried:</p>
+<pre><code>namadaw masp find --alias my-alias
+namadaw masp find --alias my-alias --unsafe-show-secret
+</code></pre>
+<footer id="open-on-gh">Found a bug? <a href="https://github.com/anoma/namada/edit/main/documentation/docs/src/user-guide/ledger/masp.md">Edit this page on GitHub.</a></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="-interacting-with-the-proof-of-stake-system"><a class="header" href="#-interacting-with-the-proof-of-stake-system">🔏 Interacting with the Proof-of-Stake system</a></h1>
+<p>The Namada Proof of Stake system uses the NAM token as the staking token. It features delegation to any number of validators and customizable validator validity predicates.</p>
+<h2 id="pos-validity-predicate"><a class="header" href="#pos-validity-predicate">PoS Validity Predicate</a></h2>
+<p>The PoS system is implemented as an account with the <a href="https://github.com/anoma/namada/blob/namada/shared/src/ledger/pos/vp.rs">PoS Validity Predicate</a> that governs the rules of the system. You can find its address in your wallet:</p>
+<pre><code class="language-shell">namada wallet address find --alias PoS
+</code></pre>
+<h2 id="epochs"><a class="header" href="#epochs">Epochs</a></h2>
+<p>The system relies on the concept of epochs. An epoch is a range of consecutive blocks identified by consecutive natural numbers. Each epoch lasts a minimum duration and includes a minimum number of blocks since the beginning of the last epoch. These are defined by protocol parameters.</p>
+<p>To query the current epoch:</p>
+<pre><code class="language-shell">namada client epoch
+</code></pre>
+<h2 id="delegating"><a class="header" href="#delegating">Delegating</a></h2>
+<p>You can delegate to any number of validators at any time. When you delegate tokens, the delegation won't count towards the validator's stake (which in turn determines its voting power) until the beginning of epoch <code>n + 2</code> in the current epoch <code>n</code> (the literal <code>2</code> is set by PoS parameter <code>pipeline_len</code>). The delegated amount of tokens will be deducted from your account immediately, and will be credited to the PoS system's account.</p>
+<p>To submit a delegation that bonds tokens from the source address to a validator with alias <code>validator-1</code>:</p>
+<pre><code class="language-shell">namada client bond \
+  --source my-new-acc \
+  --validator validator-1 \
+  --amount 12.34
+</code></pre>
+<p>You can query your delegations:</p>
+<pre><code class="language-shell">namada client bonds --owner my-new-acc
+</code></pre>
+<p>The result of this query will inform the epoch from which your delegations will be active.</p>
+<p>Because the PoS system is just an account, you can query its balance, which is the sum of all staked tokens:</p>
+<pre><code class="language-shell">namada client balance --owner PoS
+</code></pre>
+<h3 id="slashes"><a class="header" href="#slashes">Slashes</a></h3>
+<p>Should a validator exhibit punishable behavior, the delegations towards this validator are also liable for slashing. Only the delegations that were active in the epoch in which the fault occurred will be slashed by the slash rate of the fault type. If any of your delegations have been slashed, this will be displayed in the <code>bonds</code> query. You can also find all the slashes applied with:</p>
+<pre><code class="language-shell">namada client slashes
+</code></pre>
+<h3 id="unbonding"><a class="header" href="#unbonding">Unbonding</a></h3>
+<p>While your tokens are being delegated, they are locked-in the PoS system and hence are not liquid until you withdraw them. To do that, you first need to send a transaction to “unbond” your tokens. You can unbond any amount, up to the sum of all your delegations to the given validator, even before they become active.</p>
+<p>To submit an unbonding of a delegation of tokens from a source address to the validator:</p>
+<pre><code class="language-shell">namada client unbond \
+  --source my-new-acc \
+  --validator validator-1 \
+  --amount 1.2
+</code></pre>
+<p>When you unbond tokens, you won't be able to withdraw them immediately. Instead, tokens unbonded in the epoch <code>n</code> will be withdrawable starting from the epoch <code>n + 6</code> (the literal <code>6</code> is set by PoS parameter <code>unbonding_len</code>). After you unbond some tokens, you will be able to see when you can withdraw them via <code>bonds</code> query:</p>
+<pre><code class="language-shell">namada client bonds --owner my-new-acc
+</code></pre>
+<p>When the chain reaches the epoch in which you can withdraw the tokens (or anytime after), you can submit a withdrawal of unbonded delegation of tokens back to your account:</p>
+<pre><code class="language-shell">namada client withdraw \
+  --source my-new-acc \
+  --validator validator-1
+</code></pre>
+<p>Upon success, the withdrawn tokens will be credited back your account and debited from the PoS system.</p>
+<h3 id="validators-voting-power"><a class="header" href="#validators-voting-power">Validators' Voting Power</a></h3>
+<p>To see all validators and their voting power, you can query:</p>
+<pre><code class="language-shell">namada client voting-power
+</code></pre>
+<p>With this command, you can specify <code>--epoch</code> to find the voting powers at some future epoch. Note that only the voting powers for the current and the next epoch are final.</p>
+<h2 id="-pos-validators"><a class="header" href="#-pos-validators">📒 PoS Validators</a></h2>
+<h3 id="generate-a-validator-account"><a class="header" href="#generate-a-validator-account">Generate a validator account</a></h3>
+<p>To register a new validator account, run:</p>
+<pre><code class="language-shell">namada client init-validator \
+  --alias my-validator \
+  --source my-new-acc
+</code></pre>
+<p>This command will generate the keys required for running a validator:</p>
+<ul>
+<li>Consensus key, which is used in <a href="https://docs.tendermint.com/master/nodes/validators.html#validator-keys">signing blocks in Tendermint</a>.</li>
+<li>Validator account key for signing transactions on the validator account, such as token self-bonding, unbonding and withdrawal, validator keys, validity predicate, state and metadata updates.</li>
+<li>Staking reward account key for signing transactions on the staking reward accounts. More on this account below.</li>
+</ul>
+<p>Then, it submits a transaction to the ledger that generates two new accounts with established addresses:</p>
+<ul>
+<li>A validator account with the main validator address, which can be used to receive new delegations</li>
+<li>A staking reward account, which will receive rewards for participation in the PoS system. In the future, the validity predicate of this account will be able to control how the rewards are to be distributed to the validator's delegators. <em>Staking rewards are not yet implemented</em>.</li>
+</ul>
+<p>These keys and aliases of the addresses will be saved in your wallet. Your local ledger node will also be setup to run this validator, you just have to shut it down with e.g. <code>Ctrl + C</code>, then start it again with the same command:</p>
+<pre><code class="language-shell">namada ledger
+</code></pre>
+<p>The ledger will then use the validator consensus key to sign blocks, should your validator account acquire enough voting power to be included in the active validator set. The size of the active validator set is limited to <code>128</code> (the limit is set by the PoS <code>max_validator_slots</code> parameter).</p>
+<p>Note that the balance of NAM tokens that is in your validator account does not count towards your validator's stake and voting power:</p>
+<pre><code class="language-shell">namada client balance --owner my-validator --token NAM
+</code></pre>
+<p>That is, the balance of your account's address is a regular liquid balance that you can transfer using your validator account key, depending on the rules of the validator account's validity predicate. The default validity predicate allows you to transfer it with a signed transaction and/or stake it in the PoS system.</p>
+<h3 id="self-bonding"><a class="header" href="#self-bonding">Self-bonding</a></h3>
+<p>You can submit a self-bonding transaction of tokens from a validator account to the PoS system with:</p>
+<pre><code class="language-shell">namada client bond \
+  --validator my-validator \
+  --amount 3.3
+</code></pre>
+<h3 id="determine-your-voting-power"><a class="header" href="#determine-your-voting-power">Determine your voting power</a></h3>
+<p>A validator's voting power is determined by the sum of all their active self-bonds and delegations of tokens, with slashes applied, if any, divided by <code>1000</code> (PoS <code>votes_per_token</code> parameter, with the current value set to <code>10‱</code> in parts per ten thousand).</p>
+<p>The same rules apply to delegations. When you self-bond tokens, the bonded amount won't count towards your validator's stake (which in turn determines your power) until the beginning of epoch <code>n + 2</code> in the current epoch <code>n</code>. The bonded amount of tokens will be deducted from the validator's account immediately and will be credited to the PoS system's account.</p>
+<p>While your tokens are being self-bonded, they are locked-in the PoS system and hence are not liquid until you withdraw them. To do that, you first need to send a transaction to “unbond” your tokens. You can unbond any amount, up to the sum of all your self-bonds, even before they become active.</p>
+<h3 id="self-unbonding"><a class="header" href="#self-unbonding">Self-unbonding</a></h3>
+<p>To submit an unbonding of self-bonded tokens from your validator:</p>
+<pre><code class="language-shell">namada client unbond \
+  --validator my-validator \
+  --amount 0.3
+</code></pre>
+<p>Again, when you unbond tokens, you won't be able to withdraw them immediately. Instead, tokens unbonded in the epoch <code>n</code> will be withdrawable starting from the epoch <code>n + 6</code>. After you unbond some tokens, you will be able to see when you can withdraw them via <code>bonds</code> query:</p>
+<pre><code class="language-shell">namada client bonds --validator my-validator
+</code></pre>
+<p>When the chain reaches the epoch in which you can withdraw the tokens (or anytime after), you can submit a withdrawal of unbonded tokens back to your validator account:</p>
+<pre><code class="language-shell">namada client withdraw --validator my-validator
+</code></pre>
+<footer id="open-on-gh">Found a bug? <a href="https://github.com/anoma/namada/edit/main/documentation/docs/src/user-guide/ledger/pos.md">Edit this page on GitHub.</a></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="governance"><a class="header" href="#governance">Governance</a></h1>
+<p>The Namada governance mechanism gives users the possibility to upgrade the protocol dynamically.</p>
+<p>There are two different mechanism to create a proposal:</p>
+<ul>
+<li><a href="user-guide/ledger/governance.html#on-chain-proposals">On-chain proposals</a>: Proposal is voted on and tallied on-chain. This can optionally include proposal code to be executed if the proposal is accepted.</li>
+<li><a href="user-guide/ledger/governance.html#off-chain-proposals">Off-chain proposals</a></li>
+</ul>
+<h2 id="on-chain-proposals"><a class="header" href="#on-chain-proposals">On-chain proposals</a></h2>
+<h3 id="create-a-proposal"><a class="header" href="#create-a-proposal">Create a proposal</a></h3>
+<p>Assuming you have an account with at least 500 NAM token (in this example we are going to use <code>my-new-acc</code>), lets get the corresponding address</p>
+<pre><code class="language-shell">namada wallet address find --alias `my-new-acc`
+</code></pre>
+<p>Now, we need to create a json file <code>proposal.json</code> holding the content of our proposal. Copy the below text into a json file.</p>
+<pre><code class="language-json">{
+    &quot;content&quot;: {
+        &quot;title&quot;: &quot;Proposal title&quot;,
+        &quot;authors&quot;: &quot;email@proposal.n&quot;,
+        &quot;discussions-to&quot;: &quot;www.github.com/anoma/aip/1&quot;,
+        &quot;created&quot;: &quot;2022-03-10T08:54:37Z&quot;,
+        &quot;license&quot;: &quot;MIT&quot;,
+        &quot;abstract&quot;: &quot;Ut convallis eleifend orci vel venenatis. Duis vulputate metus in lacus sollicitudin vestibulum. Suspendisse vel velit ac est consectetur feugiat nec ac urna. Ut faucibus ex nec dictum fermentum. Morbi aliquet purus at sollicitudin ultrices. Quisque viverra varius cursus. Praesent sed mauris gravida, pharetra turpis non, gravida eros. Nullam sed ex justo. Ut at placerat ipsum, sit amet rhoncus libero. Sed blandit non purus non suscipit. Phasellus sed quam nec augue bibendum bibendum ut vitae urna. Sed odio diam, ornare nec sapien eget, congue viverra enim.&quot;,
+        &quot;motivation&quot;: &quot;Ut convallis eleifend orci vel venenatis. Duis vulputate metus in lacus sollicitudin vestibulum. Suspendisse vel velit ac est consectetur feugiat nec ac urna. Ut faucibus ex nec dictum fermentum. Morbi aliquet purus at sollicitudin ultrices.&quot;,
+        &quot;details&quot;: &quot;Ut convallis eleifend orci vel venenatis. Duis vulputate metus in lacus sollicitudin vestibulum. Suspendisse vel velit ac est consectetur feugiat nec ac urna. Ut faucibus ex nec dictum fermentum. Morbi aliquet purus at sollicitudin ultrices. Quisque viverra varius cursus. Praesent sed mauris gravida, pharetra turpis non, gravida eros.&quot;,
+        &quot;requires&quot;: &quot;2&quot;
+    },
+    &quot;author&quot;: &quot;TODO&quot;,
+    &quot;voting_start_epoch&quot;: 3,
+    &quot;voting_end_epoch&quot;: 6,
+    &quot;grace_epoch&quot;: 12,
+    &quot;proposal_code_path&quot;: &quot;./wasm_for_tests/tx_no_op.wasm&quot;
+}
+</code></pre>
+<p>You should change the value of:</p>
+<ul>
+<li><code>Author</code> field with the address of <code>my-new-acc</code>.</li>
+<li><code>voting_start_epoch</code> with a future epoch (must be a multiple of 3) for which you want the voting to begin</li>
+<li><code>voting_end_epoch</code> with an epoch greater than <code>voting_start_epoch</code>, a multiple of 3, and by which no further votes will be accepted</li>
+<li><code>grace_epoch</code> with an epoch greater than <code>voting_end_epoch</code> + 6, in which the proposal, if passed, will come into effect</li>
+<li><code>proposal_code_path</code> with the absolute path of the wasm file to execute (or remove the field completely)</li>
+</ul>
+<p>As soon as your <code>proposal.json</code> file is ready, you can submit the proposal with (making sure to be in the same directory as the <code>proposal.json</code> file):</p>
+<pre><code class="language-shell">namada client init-proposal --data-path proposal.json 
+</code></pre>
+<p>The transaction should have been accepted. You can query all the proposals with:</p>
+<pre><code class="language-shell">namada client query-proposal
+</code></pre>
+<p>or a single proposal with</p>
+<pre><code class="language-shell">namada client query-proposal --proposal-id 0
+</code></pre>
+<p>where <code>0</code> is the proposal id.</p>
+<h3 id="vote-a-proposal"><a class="header" href="#vote-a-proposal">Vote a proposal</a></h3>
+<p>Only validators and delegators can vote. Assuming you have a validator or a delegator account (in this example we are going to use <code>validator</code>), you can send a vote with the following command:</p>
+<pre><code class="language-shell">namada client vote-proposal \
+    --proposal-id 0 \
+    --vote yay \
+    --signer validator
+</code></pre>
+<p>where <code>--vote</code> can be either <code>yay</code> or <code>nay</code>.</p>
+<h3 id="check-the-result"><a class="header" href="#check-the-result">Check the result</a></h3>
+<p>As soon as the ledger reaches the epoch defined in the json as <code>voting_end_epoch</code>, no votes will be accepted. The code definied in <code>proposal_code</code> json field will be executed at the beginning of <code>grace_epoch</code> epoch. You can use the following commands to check the status of a proposal:</p>
+<pre><code class="language-shell">namada client query-proposal --proposal-id 0
+</code></pre>
+<p>or to just check the result:</p>
+<pre><code class="language-shell">namada client query-proposal-result --proposal-id 0
+</code></pre>
+<h2 id="off-chain-proposals"><a class="header" href="#off-chain-proposals">Off-chain proposals</a></h2>
+<p>If for any reason issuing an on-chain proposal is not adequate to your needs, you still have the option to create an off-chain proposal.</p>
+<h3 id="create-proposal"><a class="header" href="#create-proposal">Create proposal</a></h3>
+<p>Create the same json file as in the on-chain proposal and use the following command:</p>
+<pre><code class="language-shell">namada client init-proposal \
+    --data-path proposal.json \
+    --offline
+</code></pre>
+<p>This command will create a <code>proposal</code> file same directory where the command was launched.</p>
+<h3 id="vote-on-proposal"><a class="header" href="#vote-on-proposal">Vote on proposal</a></h3>
+<p>To vote on an offline proposal use the following command:</p>
+<pre><code class="language-shell">namada client vote-proposal --data-path proposal \
+    --vote yay \
+    --signer validator \
+    --offline
+</code></pre>
+<p>This command will create a <code>proposal-vote-${address}</code> file (where address is the <code>--signer</code> address).</p>
+<h3 id="tally-off-chain-proposal"><a class="header" href="#tally-off-chain-proposal">Tally off-chain proposal</a></h3>
+<p>To compute the tally for an offline proposal we need to collect</p>
+<ul>
+<li><code>proposal</code> file (must have this name)</li>
+<li>all the <code>proposal-vote-${address}</code> files</li>
+</ul>
+<p>All those files will have to be in a folder (lets call it <code>offline-proposal</code>).</p>
+<p>Now you can use the following command:</p>
+<pre><code class="language-shell">namada client query-proposal-result \
+    --offline \
+    --data-path `offline-proposal`
+</code></pre>
+<p>which will tell you the proposal result.</p>
+<footer id="open-on-gh">Found a bug? <a href="https://github.com/anoma/namada/edit/main/documentation/docs/src/user-guide/ledger/governance.md">Edit this page on GitHub.</a></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="genesis-validator-setup"><a class="header" href="#genesis-validator-setup">Genesis validator setup</a></h1>
+<p>A genesis validator is one which is a validator right from the first block of the chain - i.e. at genesis. The details of genesis validators are hardcoded into the genesis file that is distributed to all users who want to interact with a chain.</p>
+<h3 id="prerequisites"><a class="header" href="#prerequisites">Prerequisites</a></h3>
+<ul>
+<li>a machine that meets the <a href="user-guide/./install.html#hardware-requirements">requirements</a> for running a validator node</li>
+<li>an associated public IPv4 address with ports 26656 reachable from anywhere for P2P connections</li>
+</ul>
+<h2 id="pre-genesis"><a class="header" href="#pre-genesis">Pre-genesis</a></h2>
+<p>To setup all the <a href="user-guide/genesis-validator-setup.html#required-keys">required keys</a> for a genesis validator for an upcoming network, you can execute the following command with an alias of your choice. Note that this alias is public (the address of your validator account will be visible in every wallet) and must be unique within the network.</p>
+<p>You must also provide a static <code>{IP:port}</code> to the <code>--net-address</code> argument of your future node's P2P address.</p>
+<pre><code class="language-shell">export ALIAS=&quot;1337-validator&quot;
+namada client utils init-genesis-validator \
+    --alias $ALIAS \
+    --net-address 1.2.3.4:26656
+</code></pre>
+<p>After generating your keys, the command will print something like this:</p>
+<pre><code class="language-shell">Pre-genesis TOML written to .namada/pre-genesis/1337-validator/validator.toml
+</code></pre>
+<p>This file is the public configuration of your validator. You can safely share this file with the network's organizer, who is responsible for setting up and publishing the finalized genesis file and Namada configuration for the chain.</p>
+<p>Note that the wallet containing your private keys will also be written into this directory.</p>
+<h2 id="after-network-config-release"><a class="header" href="#after-network-config-release">After network config release</a></h2>
+<p>Once the network is finalized, a new chain ID will be created and released on <a href="https://github.com/heliaxdev/anoma-network-config/releases">anoma-network-config/releases</a> (a custom configs URL can be used instead with <code>ANOMA_NETWORK_CONFIGS_SERVER</code> env var). You can use it to setup your genesis validator node for the <code>--chain-id</code> argument in the command below.</p>
+<pre><code class="language-shell">namada client utils join-network \
+    --chain-id $CHAIN_ID \
+    --genesis-validator $ALIAS
+</code></pre>
+<p>This command will use your pre-genesis wallet for the given chain and take care of setting up Namada with Tendermint.</p>
+<p>If you run this command in the same directory that you ran <code>namada client utils init-genesis-validator</code>, it should find the pre-genesis wallet for you, otherwise you can pass the path to the pre-genesis directory using <code>--pre-genesis-path</code>. e.g.</p>
+<pre><code class="language-shell">namada client utils join-network \
+    --chain-id $CHAIN_ID \
+    --pre-genesis-path workspace/.anoma/pre-genesis/$ALIAS
+</code></pre>
+<p>Once setup, you can start the ledger as usual with e.g.:</p>
+<pre><code class="language-shell">namada ledger
+</code></pre>
+<h2 id="required-keys"><a class="header" href="#required-keys">Required keys</a></h2>
+<ul>
+<li>Account key: Can be used to sign transactions that require authorization in the default validator validity predicate, such as a balance transfer.</li>
+<li>Staking rewards key: Can be used to sign transactions on the PoS staking rewards account.</li>
+<li>Protocol key: This key is used by the validator's ledger itself to sign protocol transaction on behalf of the validator.</li>
+<li>DKG key: Special key needed for participation in the DKG protocol</li>
+<li>Consensus key: Used in Tendermint consensus layer. Currently, this key is written to a file which is read by Tendermint.</li>
+<li>Tendermint node key: This key is used to derive Tendermint node ID for P2P connection authentication. This key is also written to a file which is read by Tendermint.</li>
+</ul>
+<footer id="open-on-gh">Found a bug? <a href="https://github.com/anoma/namada/edit/main/documentation/docs/src/user-guide/genesis-validator-setup.md">Edit this page on GitHub.</a></footer><div style="break-before: page; page-break-before: always;"></div><h2 id="applying-to-be-a-genesis-validator"><a class="header" href="#applying-to-be-a-genesis-validator">Applying to be a genesis validator</a></h2>
+<p>Before a testnet launches, you can apply to be a genesis validator.</p>
+<h3 id="set-up"><a class="header" href="#set-up">Set up</a></h3>
+<p>Follow <a href="user-guide/./genesis-validator-setup.html#pre-genesis">this guide</a> on how to generate your &quot;pre-genesis&quot; validator files.</p>
+<p>After this, you'll have a <code>validator.toml</code> file, the contents of which will look something like the following:</p>
+<pre><code class="language-toml">[validator.1337-validator]
+consensus_public_key = &quot;00056fff5232da385d88428ca2bb2012a4d83cdf5c697864dde34b393333a72268&quot;
+account_public_key = &quot;00f1bd321be2e23b9503653dd50fcd5177ca43a0ade6da60108eaecde0d68abdc8&quot;
+staking_reward_public_key = &quot;005725f952115838590fc7c5dd9590bc054ac4bd5af55672a40df4ac7dca50ce97&quot;
+protocol_public_key = &quot;0054c213d2f8fe2dd3fc5a41a52fd2839cb49643d960d7f75e993202692c5d8783&quot;
+dkg_public_key = &quot;6000000054eafa7320ddebf00c9487e5f7ea5107a8444f042b74caf9ed5679163f854577bf4d0992a8fd301ec4f3438c9934c617a2c71649178e536f7e2a8cdc1f8331139b7fd9b4d36861f0a9915d83f61d7f969219f0eba95bb6fa45595425923d4c0e&quot;
+net_address = &quot;1.2.3.4:26656&quot;
+tendermint_node_key = &quot;00e1a8fe1abceb700063ab4558baec680b64247e2fd9891962af552b9e49318d8d&quot;
+</code></pre>
+<p>This file contains only public information and is safe to share publicly.</p>
+<h3 id="submitting-the-config"><a class="header" href="#submitting-the-config">Submitting the config</a></h3>
+<p>If you want to be a genesis validator for a testnet, please make a pull request to <a href="https://github.com/anoma/namada-testnets">https://github.com/anoma/namada-testnets</a> adding your <code>validator.toml</code> file to the relevant directory (e.g. <code>namada-close-quarters-testnet-1/</code> for the <code>namada-cq-1</code> testnet), renaming it to <code>$alias.toml</code>. e.g. if you chose your alias to be &quot;bertha&quot;, submit the file with the name <code>bertha.toml</code>. You can see what an example PR looks like <a href="https://github.com/anoma/namada-testnets/pull/1">here</a>.</p>
+<footer id="open-on-gh">Found a bug? <a href="https://github.com/anoma/namada/edit/main/documentation/docs/src/user-guide/genesis-validator-apply.md">Edit this page on GitHub.</a></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="testnets"><a class="header" href="#testnets">Testnets</a></h1>
+<p>This section describes how to connect to the various testnets and to test selected features.</p>
+<p>You may need to be using <code>namada</code> binaries built from a specific commit in order to interact with specific testnets. Use the below command with the chain ID of the testnet you want to join.</p>
+<pre><code class="language-shell">namada client utils join-network --chain-id=$NAMADA_CHAIN_ID
+</code></pre>
+<h2 id="current-testnets"><a class="header" href="#current-testnets">Current testnets</a></h2>
+<ul>
+<li><a href="testnets/./namada-close-quarters-testnet-1.html">Namada Close Quarters Testnet 1</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="namada-close-quarters-testnet-1"><a class="header" href="#namada-close-quarters-testnet-1">Namada Close Quarters Testnet 1</a></h1>
+<p>This testnet introduces the following new features:</p>
+<ul>
+<li><a href="testnets/../user-guide/ledger/governance.html">on-chain governance</a> - create and vote for proposals both onchain and offchain</li>
+<li><a href="testnets/../user-guide/ledger/masp.html">MASP (multi-asset shielded pool) transfers</a> - make private transfers of any Namada token</li>
+</ul>
+<p>Future testnets will include more features as described in <a href="https://specs.anoma.net/master/architecture/namada.html">the Namada spec</a>, like IBC (inter-blockchain communication protocol), bridging to the Ethereum blockchain and more.</p>
+<h2 id="chain-information"><a class="header" href="#chain-information">Chain information</a></h2>
+<p>Latest values regarding the testnet that would be useful to have in your shell:</p>
+<pre><code class="language-shell">export NAMADA_CHAIN_ID='namada-cq-2.a6ebeb093671093b21'
+export NAMADA_COMMIT='f1afdffd5e43ad4bb448db7bf5bc1e23464350f7'
+</code></pre>
+<p>You will need to compile the binaries from source yourself, make sure you have checked out the specific commit <code>$NAMADA_COMMIT</code> to build from, then follow <a href="testnets/../user-guide/install.html#from-source">the building from source guide</a>.</p>
+<h2 id="status"><a class="header" href="#status">Status</a></h2>
+<ul>
+<li>2022-05-05: The chain has been setup to start today at 12:00 CET.</li>
+<li>2022-05-02: We are currently preparing to launch the chain. Applications are open for people to be <a href="testnets/../user-guide/genesis-validator-apply.html">genesis validators</a>.</li>
+</ul>
+<footer id="open-on-gh">Found a bug? <a href="https://github.com/anoma/namada/edit/main/documentation/docs/src/testnets/namada-close-quarters-testnet-1.md">Edit this page on GitHub.</a></footer><div style="break-before: page; page-break-before: always;"></div><h1 id="namada-trusted-setup"><a class="header" href="#namada-trusted-setup">Namada Trusted Setup</a></h1>
+<p>The Namada Trusted Setup Ceremony generates the public parameters for the Multi-Asset Shielded Pool (MASP) circuit and guarantees its security. Under the hood, a trusted setup ceremony is a Multi-Party Computation (MPC) that lets many participants contribute randomness to the public parameters in a trustless manner. The setup is secure, as long as one participant is honest.</p>
+<h2 id="participate-in-namada-trusted-setup"><a class="header" href="#participate-in-namada-trusted-setup">Participate in Namada Trusted Setup</a></h2>
+<p>If you are interested in participating in the ceremony head over to the <a href="https://namada.net/trusted-setup.html">Namada website</a> to be notified about the launch.</p>
+<p>To contribute during the ceremony, you can install and use the canonical client implementation below. It computes the parameters for the MASP and communicates with the ceremony's coordinator. Also, check out the <a href="namada-trusted-setup.html#contribution-flow">Contribution Flow</a>.</p>
+<h3 id="building-and-contributing-from-source"><a class="header" href="#building-and-contributing-from-source">Building and contributing from source</a></h3>
+<p>Via command-line, <a href="https://www.rust-lang.org/tools/install">install Rust</a> by entering the following command:</p>
+<pre><code>curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+</code></pre>
+<p>If you already have Rust installed, make sure it is the most up-to-date version updated:</p>
+<pre><code>rustup update
+</code></pre>
+<p>Once Rust is installed, clone the <a href="https://github.com/anoma/namada-trusted-setup">Namada Trusted Setup Ceremony</a> GitHub repository and change directories into <code>namada-setup-ceremony</code>:</p>
+<pre><code>git clone https://github.com/anoma/namada-trusted-setup.git
+cd namada-trusted-setup
+</code></pre>
+<p>Build the binaries and start your contribution with:</p>
+<pre><code>cargo run --release --bin phase1 --features cli contribute https://contribute.namada.net
+</code></pre>
+<h3 id="contribution-flow"><a class="header" href="#contribution-flow">Contribution Flow</a></h3>
+<p>To enforce security, the Namada Trusted Setup accepts as many diverse contributions as possible: anonymous contributions, original source of randomness, alternative client, computation of the parameters on an airgapped or offline machine.</p>
+<p>That's why the client gives you the choice of multiple options during your contribution.</p>
+<p>The canonical client follows these steps:</p>
+<ol>
+<li>It generates a BIP39 24 words mnemonic that serves as a seed for your <code>ed25519</code> key pair. Keep it safely! It's the only way to generate your key pair and claim your rewards if you participate in the incentivized program.</li>
+<li>You will be asked if you want to participate in the incentivized program. If you want to participate, you will need to provide your legal name and a real email address so you can be contacted in the future for a KYC. The other option is to contribute anonymously.</li>
+<li>If you agreed to the previous question, you will be asked if you want to participate in the creative contest. If you agree, you will be contacted after the ceremony by email to prove your creative contribution.</li>
+<li>You will join the ceremony's queue.</li>
+<li>When it is your turn, the challenge file will be downloaded and you will be asked if you want to contribute on an offline machine or not and if you want to give your own 32 bytes seed of randomness or simply use the default method to generate randomness.</li>
+<li>If you chose to pursue on the same machine, the client will start contributing and when done it will upload the file to the server.</li>
+<li>That's all! Thanks for your contribution. </li>
+</ol>
+<footer id="open-on-gh">Found a bug? <a href="https://github.com/anoma/namada/edit/main/documentation/docs/src/namada-trusted-setup.md">Edit this page on GitHub.</a></footer>
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </body>
+</html>

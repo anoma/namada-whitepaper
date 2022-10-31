@@ -1,0 +1,431 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Shielded transfers - Namada Documentation</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../assets/custom.css">
+        <link rel="stylesheet" href="../../assets/mdbook-admonish.css">
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../../quick-start.html"><strong aria-hidden="true">2.</strong> Quickstart</a></li><li class="chapter-item expanded "><a href="../../user-guide/index.html"><strong aria-hidden="true">3.</strong> User guide</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../user-guide/install.html"><strong aria-hidden="true">3.1.</strong> Installing Namada</a></li><li class="chapter-item expanded "><a href="../../user-guide/getting-started.html"><strong aria-hidden="true">3.2.</strong> Getting started</a></li><li class="chapter-item expanded "><a href="../../user-guide/wallet.html"><strong aria-hidden="true">3.3.</strong> Managing a wallet</a></li><li class="chapter-item expanded "><a href="../../user-guide/ledger.html"><strong aria-hidden="true">3.4.</strong> The Ledger</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../user-guide/ledger/masp.html" class="active"><strong aria-hidden="true">3.4.1.</strong> Shielded transfers</a></li><li class="chapter-item expanded "><a href="../../user-guide/ledger/pos.html"><strong aria-hidden="true">3.4.2.</strong> Interacting with PoS</a></li><li class="chapter-item expanded "><a href="../../user-guide/ledger/governance.html"><strong aria-hidden="true">3.4.3.</strong> Governance</a></li></ol></li><li class="chapter-item expanded "><a href="../../user-guide/genesis-validator-setup.html"><strong aria-hidden="true">3.5.</strong> Genesis validator setup</a></li><li class="chapter-item expanded "><a href="../../user-guide/genesis-validator-apply.html"><strong aria-hidden="true">3.6.</strong> Applying to be a genesis validator</a></li></ol></li><li class="chapter-item expanded "><a href="../../testnets/index.html"><strong aria-hidden="true">4.</strong> Testnets</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../testnets/namada-close-quarters-testnet-1.html"><strong aria-hidden="true">4.1.</strong> Namada Close Quarters Testnet 1</a></li></ol></li><li class="chapter-item expanded "><a href="../../namada-trusted-setup.html"><strong aria-hidden="true">5.</strong> Namada Trusted Setup</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Namada Documentation</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/anoma/namada" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/anoma/namada/edit/main/documentation/docs/src/user-guide/ledger/masp.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="shielded-transfers"><a class="header" href="#shielded-transfers">Shielded transfers</a></h1>
+<p>In Namada, shielded transfers are enabled by the Multi-Asset Shielded Pool (MASP). The MASP is a zero-knowledge circuit (zk-SNARK) that extends the Zcash Sapling circuit to add support for sending arbitrary assets. All assets in the pool share the same anonymity set, this means that the more transactions are issued to MASP, the stronger are the privacity guarantees.</p>
+<h2 id="using-masp"><a class="header" href="#using-masp">Using MASP</a></h2>
+<p>If you are familiar with Zcash, the set of interactions you can execute with the MASP are similar:</p>
+<ul>
+<li><a href="#shielding-transfers"><strong>Shielding transfers:</strong> transparent to shielded addresses</a></li>
+<li><a href="#shielded-transfers"><strong>Shielded transfers:</strong> shielded to shielded addresses</a></li>
+<li><a href="#deshielding-tranfers"><strong>Deshielding transfers:</strong> shielded to transparent addresses</a></li>
+</ul>
+<div id="admonition-lexicon" class="admonition info">
+<div class="admonition-title">
+<p>Lexicon</p>
+<p><a class="admonition-anchor-link" href="#admonition-lexicon"></a></p>
+</div>
+<div>
+<ul>
+<li>A <strong>Spending Key</strong> is a type of private key that allows any user in possession of it to spend the balance of the associated address. For shielded addresses, possessing the Spending Key also allows the user to view the address’ balance and transaction data.</li>
+<li>A <strong>Viewing Key</strong> allows any user in possession of it to view and disclose transaction details. It is derived from the Spending Key and hold the same alias.</li>
+</ul>
+</div>
+</div>
+<h3 id="shielding-transfers"><a class="header" href="#shielding-transfers">Shielding transfers</a></h3>
+<p>To try out shielded transfers, first you need to be in possession of a
+transparent account with some token balance.</p>
+<h4 id="create-your-transparent-account"><a class="header" href="#create-your-transparent-account">Create your transparent account</a></h4>
+<p>Generate an implicit account:</p>
+<pre><code class="language-shell">namadaw address gen --alias [your-implicit-account-alias]
+</code></pre>
+<p>Then, create an established account on-chain using the implicit account you've just generated:</p>
+<pre><code class="language-shell">namadac init-account \
+    --source [your-implicit-account-alias] \
+    --public-key [your-implicit-account-alias] \
+    --alias [your-established-account-alias]
+</code></pre>
+<h4 id="get-tokens-from-the-testnet-faucet"><a class="header" href="#get-tokens-from-the-testnet-faucet">Get tokens from the Testnet Faucet</a></h4>
+<div id="admonition-testnet-faucet-tokens" class="admonition info">
+<div class="admonition-title">
+<p>Testnet Faucet Tokens</p>
+<p><a class="admonition-anchor-link" href="#admonition-testnet-faucet-tokens"></a></p>
+</div>
+<div>
+<p>The testnet tokens which the faucet can provide you have the aliases <code>NAM</code>,
+<code>BTC</code>, <code>ETH</code>, <code>DOT</code>, <code>Schnitzel</code>, <code>Apfel</code>, and <code>Kartoffel</code>. The faucet
+will transfer these in increments of 1000 maximum at a time.</p>
+</div>
+</div>
+<pre><code class="language-shell">namadac transfer \
+    --token btc \
+    --amount 1000 \
+    --source faucet \
+    --target [your-established-account-alias] \
+    --signer [your-established-account-alias]
+</code></pre>
+<p>Now that you have a transparent account with some tokens, you can generate a Spending Key to hold your shielded balances.</p>
+<h4 id="generate-your-spending-key"><a class="header" href="#generate-your-spending-key">Generate your Spending Key</a></h4>
+<p>You can randomly generate a new Spending Key with:</p>
+<pre><code class="language-shell">namadaw masp gen-key --alias [your-spending-key-alias]
+</code></pre>
+<div id="admonition-info" class="admonition info">
+<div class="admonition-title">
+<p>Info</p>
+<p><a class="admonition-anchor-link" href="#admonition-info"></a></p>
+</div>
+<div>
+<p>This command will also generate a corresponding Viewing Key sharing
+the same alias.</p>
+</div>
+</div>
+<h4 id="create-a-new-payment-address"><a class="header" href="#create-a-new-payment-address">Create a new payment address</a></h4>
+<p>To create a payment address from your Spending key, use:</p>
+<pre><code class="language-shell">namadaw masp gen-addr \
+    --key [your-spending-key-alias] \
+    --alias [your-payment-address-alias]
+</code></pre>
+<div id="admonition-note" class="admonition note">
+<div class="admonition-title">
+<p>Note</p>
+<p><a class="admonition-anchor-link" href="#admonition-note"></a></p>
+</div>
+<div>
+<p>This will generate a different payment address each time you run it.
+Payment addresses can be reused or discarded as you like, and cannot be
+correlated with one another.</p>
+</div>
+</div>
+<h4 id="send-your-shielding-transfer"><a class="header" href="#send-your-shielding-transfer">Send your shielding transfer</a></h4>
+<p>Once you have a payment address, transfer a balance from your
+transparent account to your shielded account with something like:</p>
+<pre><code class="language-shell">namadac transfer \
+    --source [your-established-account-alias] \
+    --target [your-payment-address-alias] \
+    --token btc \
+    --amount 100
+</code></pre>
+<h4 id="view-your-balance"><a class="header" href="#view-your-balance">View your balance</a></h4>
+<p>Once this transfer goes through, you can view your Spending Key's
+balance:</p>
+<pre><code class="language-shell">namadac balance --owner [your-spending-key-alias]
+</code></pre>
+<h3 id="shielded-transfers-1"><a class="header" href="#shielded-transfers-1">Shielded transfers</a></h3>
+<p>Now that you have a shielded balance, it can be transferred to a
+another shielded address:</p>
+<pre><code class="language-shell">namadac transfer \
+    --source [your-spending-key-alias] \
+    --target [some-payment-address] \
+    --token btc \
+    --amount 50 \
+    --signer [your-established-account-alias]
+</code></pre>
+<h3 id="deshielding-tranfers"><a class="header" href="#deshielding-tranfers">Deshielding tranfers</a></h3>
+<p>You can also transfer back your balance to some transparent account:</p>
+<pre><code class="language-shell">namadac transfer \
+    --source [your-spending-key-alias] \
+    --target [some-transparent-address] \
+    --token btc \
+    --amount 50 \
+    --signer [your-established-account-alias]
+</code></pre>
+<h3 id="shielded-addresskey-generation"><a class="header" href="#shielded-addresskey-generation">Shielded Address/Key Generation</a></h3>
+<h4 id="spending-key-generation"><a class="header" href="#spending-key-generation">Spending Key Generation</a></h4>
+<p>The client should be able to generate a spending key and automatically
+derive a viewing key for it. The spending key should be usable as the
+source of a transfer. The viewing key should be usable to determine the
+total unspent notes that the spending key is authorized to spend. It
+should not be possible to directly or indirectly use the viewing key to
+spend funds. Below is an example of how spending keys should be
+generated:</p>
+<pre><code>namadaw --masp gen-key --alias my-sk
+</code></pre>
+<h4 id="payment-address-generation"><a class="header" href="#payment-address-generation">Payment Address Generation</a></h4>
+<p>The client should be able to generate a payment address from a
+spending key or viewing key. This payment address should be usable
+to send notes to the originating spending key. It should not be
+directly or indirectly usable to either spend notes or view shielded
+balances. Below are examples of how payment addresses should be
+generated:</p>
+<pre><code>namadaw masp gen-addr --alias my-pa1 --key my-sk
+namadaw masp gen-addr --alias my-pa2 --key my-vk
+</code></pre>
+<h4 id="manual-keyaddress-addition"><a class="header" href="#manual-keyaddress-addition">Manual Key/Address Addition</a></h4>
+<p>The client should be able to directly add raw spending keys, viewing
+keys, and payment addresses. Below are examples of how these objects
+should be added:</p>
+<pre><code>namadaw masp add --alias my-sk --value xsktest1qqqqqqqqqqqqqq9v0sls5r5de7njx8ehu49pqgmqr9ygelg87l5x8y4s9r0pjlvu69au6gn3su5ewneas486hdccyayx32hxvt64p3d0hfuprpgcgv2q9gdx3jvxrn02f0nnp3jtdd6f5vwscfuyum083cvfv4jun75ak5sdgrm2pthzj3sflxc0jx0edrakx3vdcngrfjmru8ywkguru8mxss2uuqxdlglaz6undx5h8w7g70t2es850g48xzdkqay5qs0yw06rtxcvedhsv
+namadaw masp add --alias my-vk --value xfvktest1qqqqqqqqqqqqqqpagte43rsza46v55dlz8cffahv0fnr6eqacvnrkyuf9lmndgal7erg38awgq60r259csg3lxeeyy5355f5nj3ywpeqgd2guqd73uxz46645d0ayt9em88wflka0vsrq29u47x55psw93ly80lvftzdr5ccrzuuedtf6fala4r4nnazm9y9hq5yu6pq24arjskmpv4mdgfn3spffxxv8ugvym36kmnj45jcvvmm227vqjm5fq8882yhjsq97p7xrwqt7n63v
+namadaw masp add --alias my-pa --value patest10qy6fuwef9leccl6dfm7wwlyd336x4y32hz62cnrvlrl6r5yk0jnw80kus33x34a5peg2xc4csn
+</code></pre>
+<h3 id="making-shielded-transactions"><a class="header" href="#making-shielded-transactions">Making Shielded Transactions</a></h3>
+<h4 id="shielding-transactions"><a class="header" href="#shielding-transactions">Shielding Transactions</a></h4>
+<p>The client should be able to make shielding transactions by providing a
+transparent source address and a shielded payment address. The
+main transparent effect of such a transaction should be a deduction of
+the specified amount from the source address, and a corresponding
+increase in the balance of the MASP validity predicate's address. The
+gas fee is charged to the source address. Once the transaction is
+completed, the spending key that was used to generate the payment address
+will have the authority to spend the amount that was send. Below is an
+example of how a shielding transacion should be made:</p>
+<pre><code>namadac transfer --source Bertha --amount 50 --token BTC --target my-pa
+</code></pre>
+<h4 id="unshielding-transactions"><a class="header" href="#unshielding-transactions">Unshielding Transactions</a></h4>
+<p>The client should be able to make unshielding transactions by providing
+a shielded spending key and a transparent target address. The main
+transparent effect of such a transaction should be a deduction of the
+specified amount from the MASP validity predicate's address and a
+corresponding increase in the transparent target address. The gas fee
+is charged to the signer's address (which should default to the target
+address). Once the transaction is complete, the spending key will no
+longer be able to spend the transferred amount. Below is an example of
+how an unshielding transaction should be made:</p>
+<pre><code>namadac transfer --target Bertha --amount 45 --token BTC --source my-sk
+</code></pre>
+<h4 id="shielded-transactions"><a class="header" href="#shielded-transactions">Shielded Transactions</a></h4>
+<p>The client should be able to make shielded transactions by providing a
+shielded spending key and a shielded payment address. There should be
+no change in the transparent balance of the MASP validity predicate's
+address. The gas fee is charged to the signer's address. Once the
+transaction is complete, the spending key will no longer be able to
+spend the transferred amount, but the spending key that was used to
+(directly or indirectly) generate the payment address will. Below is
+an example of how a shielded transaction should be made:</p>
+<pre><code>namadac transfer --source my-sk --amount 5 --token BTC --target your-pa
+</code></pre>
+<h3 id="viewing-shielded-balances"><a class="header" href="#viewing-shielded-balances">Viewing Shielded Balances</a></h3>
+<p>The client should be able to view shielded balances. The most
+general output should be a list of pairs, each denoting a token
+type and the unspent amount of that token present at each shielded
+address whose viewing key is represented in the wallet. Note that
+it should be possible to restrict the balance query to check only
+a specific viewing key or for a specific token type. Below are
+examples of how balance queries should be made:</p>
+<pre><code>namadac balance
+namadac balance --owner my-key
+namadac balance --owner my-key --token BTC
+namadac balance --token BTC
+</code></pre>
+<h3 id="listing-shielded-keysaddresses"><a class="header" href="#listing-shielded-keysaddresses">Listing Shielded Keys/Addresses</a></h3>
+<p>The wallet should be able to list all the spending keys, viewing keys,
+and payment addresses that it stores. Below are examples of how the
+wallet's storage should be queried:</p>
+<pre><code>namadaw masp list-keys
+namadaw masp list-keys --unsafe-show-secret
+namadaw masp list-keys --unsafe-show-secret --decrypt
+namadaw masp list-addrs
+</code></pre>
+<h3 id="finding-shielded-keysaddresses"><a class="header" href="#finding-shielded-keysaddresses">Finding Shielded Keys/Addresses</a></h3>
+<p>The wallet should be able to find any spending key, viewing key or
+payment address when given its alias. Below are examples of how the
+wallet's storage should be queried:</p>
+<pre><code>namadaw masp find --alias my-alias
+namadaw masp find --alias my-alias --unsafe-show-secret
+</code></pre>
+<footer id="open-on-gh">Found a bug? <a href="https://github.com/anoma/namada/edit/main/documentation/docs/src/user-guide/ledger/masp.md">Edit this page on GitHub.</a></footer>
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../user-guide/ledger.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../user-guide/ledger/pos.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../user-guide/ledger.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../user-guide/ledger/pos.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

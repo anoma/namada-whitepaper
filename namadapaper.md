@@ -25,13 +25,15 @@ header-includes:
     - \fancyfoot[CO,CE]{}
     - \fancyfoot[LE,RO]{\thepage}
 ---
-
+# Clearing up the confusion
+## Anoma or Namada?
+**Anoma** is an ecosystem architecture that facilitates the operation of networked *fractal instances*. An example of a fractal instance is a sovereign blockchain that incorporates the Anoma consensus and execution model is **Namada**.
 # Background and motivations
 
 Transparency and privacy are two ends of a double edged sword. Transparency enables trust by enforcing easily-verifiable honesty, but fundamentally limits expressiveness. Any activity that cannot be publicised globally and permanently becomes inevitably supressed. Granted, for a subset of activity, this suppression may come as a feature, rather than a bug, as it forces illegal and malicious off the system. On the other hand, an arguably large subset is caught in the crossfire, ranging from medical records and political opinions to everyday transactions. As soon as there exists **one** party from which information must be withheld (on a global scale), a fully transparent model becomes unviable. We present Namada, an open-source, privacy-focused, blockchain that provides in-built optional privacy for users. Namada inherits the properties of a transparent system in being verifiable, trustless and censorship-resistant at a global scale, without sacrificing expressiveness by guaranteeing privacy by default. In this paper, we first outline the features of Namada. We then outline the stack and architecture in more detail, including high-leveled explanations for the cryptography involved. We conclude with the future roadmap and how we envisage Namada evolving.
 
 ## The importance of privacy in today's economy
-As computational power and data storage improves, the world realises that there is a large amount of valuable information we, as people, emit. This information has a lot of different use cases. It can be used to predict and protect us from pandemics, to learn about our biases, help direct more relevant ads, and more. But as we have learnt, it can also be used in order to influence our political decisions, collect and distribute our healthcare data without our consent, and help direct more relevant ads. Our transactions in particular, are being monitored increasingly. We do not believe that this is necessarily a bad thing. However, we do believe that we, as people, should have the discretion of who is able to collect and monitor the information we emit (and what information we emit). This is the primary motivation for Namada.
+As computational power and data storage improves, the world realises that there is a large amount of valuable information that we, whether we would like to or not, emit. This information has many use cases. On one hand, the information can be used to predict and protect us from pandemics, to learn about our biases, and help direct more relevant ads. But as we have learnt, it can also be used in order to influence our political decisions, collect and distribute our healthcare data without our consent, and help direct more relevant ads. Our transactions in particular, are being monitored increasingly. We do not believe that this is necessarily a bad thing. However, we do believe that we, as people, should have the discretion of who is able to collect and monitor the information we emit (and what information we emit). This is the primary motivation for Namada.
 [//]: # (TODO: CITE CITE CITE)
 
 ## Privacy as a public good
@@ -92,7 +94,7 @@ In general, validity predicates specify which state changes relevant to state th
 In Namada, a user can modify their validity predicate in order to have control over:
 
 1. Account addresses that are allowed to be involved in asset transfers with the user
-2. Token addresses that may attach a balance to the user's account address
+2. Token addresses that may attach a balance to the user's account address (i.e what tokens can be received by the user)
 3. TODO: More functionality?
 
 *Note that unlike Anoma-based blockchains in general, all Namada validity predicates are transparent.
@@ -180,10 +182,57 @@ Funding public goods is sourced through native asset (NAM) inflation, dictated b
 
 At the time of writing, 10% annual inflation is dedicated towards PGF.
 
+## Retroactive PGF
+Retroactive public goods funding has become an increasingly popular method for funding public goods. By retroactive, we mean to say funding goods in a post-fruition fashion. Goods receive a lump-sum subsidy in proportion to their perceived social utility at some point in time in which the perceived utility is believed to be more aligned with its potential social utility.
+
+The benefit of this method of PGF is that it is often more clear to evaluate the benefit public goods have brought to society after-the-fact.  Because of the nature of public goods being non-excludable, its benefit to society is a function of the number of people that use it, which may not be obvious at first. Especially for public goods that have utility which is multiplicative to the number of people that make use of it (e.g the internet), retroactive funding is an especially useful tool. In this way, uncertainty is factored out in an important way.
+
+The cons with retroactive PGF are two-fold. 
+
+1. Retroactive PGF only allows for ex-post assessment of projects at the time the assessment is being made. This means that any public good that was unable to come to fruition because of a lack of funding or other circumstances, as well as any counterfactual of the good not existing, is ignored
+
+
+2. Increased trust assumptions. In order for rPGF to correctly function as an incentive mechanism for the entrepreneur (agent) to take on risk in diverting resources to the project, the agent must be confident that the rPGF assessment mechanism will both work correctly and exist in the future at the time the assessment will be made. This may be able to be offset by some additional reward, but with risk-averse agents, this reward will have to be inefficiently allocated.
+
+### Figuring out the right amount of funding
+
+We will assume an economic agent that is both rational and risk-neutral. A risk-averse agent will inevitably require more funding.
+
+We will assume a risk-free interest rate $r$ that remains constant over time. This is a simplifying assumption that only affects the complexity of the equation.
+
+The agent is considering investing in a public goods project. The agent assesses the probability of the project being successfully funded by the rPGF council at some rate $0<s<1$. Note that $s$ includes both the inherent risk of the project itself as well as the risk attached to the rPGF council existing and functioning properly at the time of assessment. The project comes at one-time sunk cost $C$ (which includes the opportunity cost to the agent of choosing this endeavour over any other).
+
+Additionally we assume that the ex-post benefit to society $U$ at the time of assessment $T$ is greater than the cost of investing in the project (so that the rPGF council will find it worth funding ex-post). 
+
+$U > C(1+r)^T$
+
+The agent will be incentivised to invest in their project if funding retroactively directed to the project $F$ is at least as high as his costs.
+
+$ sF \geq C(1+r)^T \Rightarrow F \geq \frac{C}{s}(1+r)^T $
+
+If the agent is risk-averse, then this becomes more complicated. A common way to measure risk aversion is to assign the agent a utility function
+
+$u(c) = \frac{c^{1-\rho}}{1-\rho}$
+
+In non-nonsense speak, this basically means that the agent is sensitive to uncertainty, and this risk-averseness is captured by $0\leq \rho \;\; ; \rho \neq 1$
+
+Then we have 
+
+$ \frac{(sF)^{1-\rho}}{1-\rho} \geq C(1+r)^T \Rightarrow F \geq \big((1-\rho)C(1+r)^T\big)^\frac{1}{1-\rho}$
+
+There is an extensive literature in estimating $\rho$, and estimates vary wildly. [Groom and Maddison](https://link.springer.com/article/10.1007/s10640-018-0242-z) estimated the value to be around 1.5 for the United Kingdom.
+
+
+
+
+
+
 ## Continuous PGF
 
+Continuous PGF is meant to assist public goods coming to fruition. 
 
-## Retroactive PGF
+
+## Four goals of PGF
 
 
 # Stack and Architectural Details
@@ -200,11 +249,14 @@ Imagine two different bridges exist between blockchain A and blockchain B, and t
 
 When working with a shielded pool, the additional factor of privacy set size comes into play. If a small size of FUN is being routed through Bar compared to Foo, then any asset routed through Foo will have stronger privacy guarantees than Bar, and will eventually lead to equilibria whereby a canonical bridge is inevitable. Further, any liquidity provider swapping assets from non-canonical bridges to the canonical-bridge asset lose all privacy guarantees.
 
-Ideally, this can be avoided by incorporating *private* bridges. 
+Ideally, this can be avoided by incorporating *private* bridges. Under a private bridge framework, the amount as well as the underlying asset can remain private. This feat is achieved through multiparty computation (MPC).
 
 ## Privacy-Conserving Swaps
 
 Using the platform developed by Osmosis-Labs, Namada will allow for privacy-preserving swaps between assets.
 
-The Uniswap v3 contract will be integrated for similar purposes.
+The Uniswap V3 contract will be integrated for similar purposes.
 
+A user on Namada (Alice) will be able to transfer her asset on Namada in exchange for another asset on the destination chain by sending a readable message encoding this desire. The swap up to this point in time is therefore transparent, but the swapped asset is returned to a native VP Namada. The native VP will escrow the asset by first shielding it, and then creating a shielded transfer of the asset to Alice.
+
+In this way, privacy of the swap is conserved for Alice from the point the swap has occurred. 
