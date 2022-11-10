@@ -196,31 +196,40 @@ The cons with retroactive PGF are two-fold.
 
 ### Figuring out the right amount of funding
 
-We will assume an economic agent that is both rational and risk-neutral. A risk-averse agent will inevitably require more funding.
+We will assume an economic agent that is both rational and risk-neutral. This means that the agent is trying to maximize the reward in expectation. A risk-averse agent will inevitably require more funding.
 
 We will assume a risk-free interest rate $r$ that remains constant over time. This is a simplifying assumption that only affects the complexity of the equation.
 
-The agent is considering investing in a public goods project. The agent assesses the probability of the project being successfully funded by the rPGF council at some rate $0<s<1$. Note that $s$ includes both the inherent risk of the project itself as well as the risk attached to the rPGF council existing and functioning properly at the time of assessment. The project comes at one-time sunk cost $C$ (which includes the opportunity cost to the agent of choosing this endeavour over any other).
+The agent is considering investing in a public goods project. The agent assesses the probability of the project being successfully funded by the rPGF council at some rate $0<s<1$. Note that the success rate $s$ includes both 
+1. the inherent risk of the project itself as well as 
+2. the risk attached to the rPGF council existing and functioning properly at the time of assessment. 
+
+The project comes at one-time sunk cost $C$ (which includes the opportunity cost to the agent of choosing this endeavour over any other).
 
 Additionally we assume that the ex-post benefit to society $U$ at the time of assessment $T$ is greater than the cost of investing in the project (so that the rPGF council will find it worth funding ex-post). 
 
-$U > C(1+r)^T$
+$$U > C(1+r)^T$$
 
-The agent will be incentivised to invest in their project if funding retroactively directed to the project $F$ is at least as high as his costs.
+An agent will be incentivised to invest in their project if funding retroactively directed to the project $F$ is at least as high as their costs.
 
-$ sF \geq C(1+r)^T \Rightarrow F \geq \frac{C}{s}(1+r)^T $
+$$ sF \geq C(1+r)^T \Rightarrow F \geq \frac{C}{s}(1+r)^T $$
 
 If the agent is risk-averse, then this becomes more complicated. A common way to measure risk aversion is to assign the agent a utility function
+$$u(c) = \begin{cases}
+\frac{c^{1-\eta}}{1-\eta} &\text{if }\eta \geq 0 \text{ and } \eta \neq 1\\
+\ln(c) &\text{if } \eta = 1
+\end{cases}$$
+(known as [isoelastic utility](https://en.wikipedia.org/wiki/Isoelastic_utility)).
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Isoelastic.svg/440px-Isoelastic.svg.png)
 
-$u(c) = \frac{c^{1-\rho}}{1-\rho}$
-
-In non-nonsense speak, this basically means that the agent is sensitive to uncertainty, and this risk-averseness is captured by $0\leq \rho \;\; ; \rho \neq 1$
+In non-nonsense speak, this basically means that the agent is sensitive to uncertainty, and this risk-averseness is captured by $0\leq \eta \;\; ; \eta \neq 1$—the bigger $\eta$, the bigger the aversity to risk. For the case $\eta = 1$, the effect is that doubling the expected reward increases the utility of the risk-awerse agent only by a additive constant. 
 
 Then we have 
-
-$ \frac{(sF)^{1-\rho}}{1-\rho} \geq C(1+r)^T \Rightarrow F \geq \big((1-\rho)C(1+r)^T\big)^\frac{1}{1-\rho}$
+$$ \frac{(sF)^{1-\eta}}{1-\eta} \geq C(1+r)^T \Rightarrow F \geq \frac{1}{s}\big((1-\eta)C(1+r)^T\big)^\frac{1}{1-\eta}$$
 
 There is an extensive literature in estimating $\rho$, and estimates vary wildly. [Groom and Maddison](https://link.springer.com/article/10.1007/s10640-018-0242-z) estimated the value to be around 1.5 for the United Kingdom.
+
+As $s$ approaches $1$, we begin to move towards a world where retroactive funding achieves all the benefits of continuous funding, whilst also maintaining its advantage of filtering uncertainty at no additional premium (since if F is large enough this is true regardless). The premium needed whilst $s<1$ will depend on the risk-averseness of the agent, and could be mitigated by the existence of insurance, should a market for that exist.
 
 
 
@@ -229,15 +238,54 @@ There is an extensive literature in estimating $\rho$, and estimates vary wildly
 
 ## Continuous PGF
 
-Continuous PGF is meant to assist public goods coming to fruition. 
+Continuous PGF is meant to assist public goods coming to fruition. Every quarter, the council votes and decides on a group of public good projects that will receive up to 5% of the annual inflation distributed continuously over that quarter. The benefit of continuous funding include but is not limited to:
+
+1. Since the money is received up front, the entrepeneural agent is less concerned with the possibility of not receiving funding despite the success of the project. Therefore it comes at a lower 
+
+2. In an economy where the entrepreneurial agent is unable to take loans at a reasonable price (either because lenders do not have enough faith in the rPGF system or because the agent is unable to provide sufficient collateral), an agent that would be unable to pursue the endeavour is more likely to pursue it.
+
+On the other hand, there are inevitable costs:
+
+1. The council takes on additional risk, since the benefit of the good is less clear without the benefit of hindsight. 
+2. A lack of incentive for commitment by the agent, which can lead to uncompleted projects. 
+3. Increased uncertainty in evaluating the council's decisions as speculation is harder to assess. This places greater trust assumptions on the council acting faithfully.
+
 
 
 ## Four goals of PGF
+Public goods funding is intended to be directed to the four following categories.
 
+For development related to Namada/Anoma ecosystem:
+
+1. Technical research related to Namada/Anoma, e.g research in cryptography, distributed systems, consensus mechanisms, 
+
+2. Engineering related to Namada/Anoma, including but not limited to the user-interface, storage/throughput optimisation, bug-fixes and can be distrubted through e.g developer grants, bug bounties, etc 
+
+3. Social reserach related to Namada/Anoma, more specifically resarch exploring the relationship by the technology and humans. This may be how privacy affects interactions e.g artist grants etc
+
+For public goods not directly related to Namada/Anoma:
+
+4. External public goods - e.g carbon capture, independent journalism, direct cash transfers 
+
+More detailed information can be found at specs.namada.net/economics/public-goods-funding.html. 
 
 # Stack and Architectural Details
 
 The codebase is built in rust. As with any Anoma-based blockchain, validity predicates dictate state changes. The MASP is built using the Sapling circuit as introduced by the Electric Coin Company (ECC).
+
+## Validity Predicates
+
+Validity predicates are an integral part of any Anoma fractal instance and allows users to dictate what state changes are possible in the blockchain. In Namada, the extent to this functionality is limited, but important nonetheless. 
+
+In Namada, a user will be able to whitelist and blacklist both user and token addresses. In this way, a user can prove that they are following the law without necessarily revealing their entire transaction history with their viewing key. Given increased regulation in the sphere, this can be a useful feature that stil protects privacy.
+
+## Consensus
+
+Namada is built with the Tendermint BFT consensus algorithm. This not only allows Namada to achieve fast-finality with up to 150 validators, but also equips Namada with interopability between other tendermint-based blockchains (such as the Cosmos ecosystem).
+
+## Cubic Slashing
+
+An important feature that Namada implements 
 
 # Future Roadmap
 
