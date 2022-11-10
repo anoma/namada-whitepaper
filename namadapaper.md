@@ -273,12 +273,6 @@ More detailed information can be found at specs.namada.net/economics/public-good
 
 The codebase is built in rust. As with any Anoma-based blockchain, validity predicates dictate state changes. The MASP is built using the Sapling circuit as introduced by the Electric Coin Company (ECC).
 
-## Validity Predicates
-
-Validity predicates are an integral part of any Anoma fractal instance and allows users to dictate what state changes are possible in the blockchain. In Namada, the extent to this functionality is limited, but important nonetheless. 
-
-In Namada, a user will be able to whitelist and blacklist both user and token addresses. In this way, a user can prove that they are following the law without necessarily revealing their entire transaction history with their viewing key. Given increased regulation in the sphere, this can be a useful feature that stil protects privacy.
-
 ## Consensus
 
 Namada is built with the Tendermint BFT consensus algorithm. This not only allows Namada to achieve fast-finality with up to 150 validators, but also equips Namada with interopability between other tendermint-based blockchains (such as the Cosmos ecosystem).
