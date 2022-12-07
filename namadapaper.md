@@ -83,7 +83,7 @@ All Namada transactions are interpreted in WASM form. This means that each Valid
 
 ## Multi Asset Shielded Pool (MASP)
 
-The Multi Asset Shielded Pool (MASP) is the primary feature that Namada offers. The MASP is inspired by the work produced by the Electric Coin Company, and implements the ideas of the Sapling Circuit directly. More specifically, it was inspired by [Daria's insightful issue on the Zcash github repo](https://github.com/zcash/zcash/issues/2277#issuecomment-321106819). We acknowledge the importance of this work and therefore propose to offer the ECC team tokens of appreciation at our genesis block.
+The Multi Asset Shielded Pool (MASP) is the primary feature that Namada offers. The MASP is inspired by the work produced by the Electric Coin Company, and implements the ideas of the Sapling Circuit directly. More specifically, it was inspired by [Daria's insightful issue on the Zcash github repo](https://github.com/zcash/zcash/issues/2277#issuecomment-321106819). We acknowledge the importance of this work and therefore [propose](https://hackmd.io/GgZXWTDSSB6hp33FAFybFw?both) to offer the ECC team tokens of appreciation at our genesis block.
 
 
 At a very high level[^1], the MASP works in the following fashion:
@@ -154,9 +154,9 @@ We recognise that having secure, isolated bridges is a vital component in paving
 Trust assumptions when using bridges in general:
 
 $\text{Trust System} = \min(\text{Trust}(\text{Bridge Operators},\text{Trust}(\text{Source Chain}), \text{Trust}(\text{Destination Chain}) \Rightarrow \\
-=  \min(\text{Trust}(\text{Source Chain}), \text{Trust}(\text{Destination Chain})$
+=  \min(\text{Trust}(\text{Source Chain}), \text{Trust}(\text{Destination Chain}))$
 
-More specifically, take Ethereum bridge as an example. Validators on Namada will be running Ethereum full nodes, and will be tasked with listening for relevant events on the governance-specified bridge contract. The block proposer will then include the relevant transaction on the Namada consensus process. Once consensus threshold has been reached on validating the deposit, the block proposer is incentivised to include a transaction that will allow the user to "mint" a corresponding value of equivalent asset on the Namada side.
+More specifically, take the Ethereum bridge as an example. Validators on Namada will be running Ethereum full nodes, and will be tasked with listening for relevant events on the governance-specified bridge contract. The block proposer will then include the relevant transaction on the Namada consensus process. Once consensus threshold has been reached on validating the deposit, the block proposer is incentivised to include a transaction that will allow the user to "mint" a corresponding value of equivalent asset on the Namada side.
 
 Similarly, the reverse process will allow for withdrawals of deposits on the Ethereum side, whereby validators are tasked with initialising the transaction that allows the user to withdraw the correct amount of asset from the Ethereum bridge contract.
 
